@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import {Header} from "./Components/Header/Header";
+import {NavBar} from "./Components/NavBar/NavBar";
+import {Profile} from "./Components/Profile/Profile";
+import {Dialogs} from "./Components/Dialogs/Dialogs";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {StoreType} from "./Redux/State";
+
+
+
+
+
+function App(props: StoreType) {
+
+    return (
+        <BrowserRouter>
+        <div className="App-Wraper">
+            <Header/>
+            <NavBar/>
+
+            <div className='App-Wraper-content'>
+
+            {/*<Route path='/dialogs' component={Dialogs} />*/}
+
+           <Routes>
+               <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} dispatch={props.dispatch} />} />
+               <Route path="/profile" element={<Profile profilePage={props.state.profilePage}
+                                                        dispatch={props.dispatch}
+                                                         />} />
+               {/*<Route path="/messages" element={<Profile />} />*/}
+               {/*<Route path="/news" element={<Profile />} />*/}
+               {/*<Route path="/music" element={<Profile />} />*/}
+               {/*<Route path="/settings" element={<Profile />} />*/}
+           </Routes>
+
+            </div>
+
+        </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
