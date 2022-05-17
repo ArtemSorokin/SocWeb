@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./State";
+import {ActionsTypes} from "./Redux-store";
 
 type StateArgumentType = {
 
@@ -12,9 +12,27 @@ type StateArgumentType = {
 const NewDialogMessageText = 'NewDialogMessageText'
 const AddDialogMessageText = 'AddDialogMessageText'
 
+let dialogInitialState =  {
+    dialogData: [
+        {id: 1, name: 'Name1'},
+        {id: 2, name: 'Name3'},
+        {id: 3, name: 'Name3'},
+        {id:4 , name: 'Name3'},
+        {id: 5, name: 'Name3'}
+    ],
+
+        messageData: [
+        { message: 'Day', likeCount: 10},
+        { message: 'Night', likeCount: 12},
+        { message: 'Jojo', likeCount: 15},
+        { message: 'Jojo', likeCount: 15},
+        { message: 'Jojo', likeCount: 15}
+    ],
+        newDialogMessageText: '',
+}
 
 
-export const dialogReducer = (state:StateArgumentType, action: ActionsTypes) => {
+export const dialogReducer = (state:StateArgumentType = dialogInitialState, action: ActionsTypes) => {
 
     if (action.type === NewDialogMessageText) {
 

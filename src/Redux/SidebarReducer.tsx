@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./State";
+import {ActionsTypes} from "./Redux-store";
 
 type StateArgumentType = {
     dialogPage: {
