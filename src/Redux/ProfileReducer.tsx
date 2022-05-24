@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./Store";
+import {ActionsTypes} from "./Redux-store";
 
 type StateArgumentType = {
 
@@ -28,7 +28,7 @@ export const AddPostActionCreator = ()=>({type: AddPost})
 
 
 
-export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes) => {
+export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes):any => {
     debugger
 
     if(action.type === AddPost) {

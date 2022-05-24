@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {StateType, store, StoreType} from "./Redux/Redux-store";
+import {store, RootState, AppStateType} from "./Redux/Redux-store";
 
 import App from "./App";
 
 
-let renderEntierThree = (state:StateType)=> {
+let renderEntierThree = (state:RootState)=> {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)}
+            <App state={state.getState()} dispatch={store.dispatch.bind(store)}
                      subscribe={store.subscribe}/>
         </React.StrictMode>,
         document.getElementById('root')

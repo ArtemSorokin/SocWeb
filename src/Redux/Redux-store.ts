@@ -1,25 +1,30 @@
-import {combineReducers, configureStore, createStore} from "@reduxjs/toolkit";
+import {combineReducers, configureStore, createStore, legacy_createStore, Unsubscribe} from "@reduxjs/toolkit";
 import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
+import {sidebarReducer} from "./SidebarReducer";
 
-export type StateType = {
-    // dialogPage: {
-    //     dialogData: Array<{ id: number, name: string }>
-    //     messageData: Array<{ message: string, likeCount?: number }>
-    //     newDialogMessageText:string
-    // },
-    // profilePage: {
-    //     postData: Array<{ message: string, likes: number }>,
-    //     newPostText: string
-    // }
-}
+export type RootState = typeof store
+// export type State = ReturnType<RootState>
+// export type StateType = {
+//     dialogPage: {
+//         dialogData: Array<{ id: number, name: string }>
+//         messageData: Array<{ message: string, likeCount?: number }>
+//         newDialogMessageText:string
+//     },
+//     profilePage: {
+//         postData: Array<{ message: string, likes: number }>,
+//         newPostText: string
+//     }
+// }
 
-export type StoreType = {
-    state: StateType
-    subscribe: (observer:(state:StateType)=>void)=> void
-    dispatch:(action: AddPostActionType | UpdatePostTextActionType)=>void
-
-}
+// export type StoreType = {
+//     state: RootState
+//     // subscribe: (observer:(state:StateType)=>void)=> void
+//     subscribe:(listener: () => void) => Unsubscribe  // ?????
+//     dispatch:(action: AddPostActionType | UpdatePostTextActionType)=>void
+//
+//
+// }
 type  AddPostActionType = {
     type:'AddPost'
 }
@@ -40,13 +45,14 @@ type AddDialogMessageText = {
 
 export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText
 
-
-
+type ReducersType =  typeof reducers
+export type AppStateType = ReturnType<ReducersType>
 
 let reducers = combineReducers({
-    profileReducer,
-    dialogReducer
+    profileReducer: profileReducer,
+    dialogReducer: dialogReducer,
+    sidebarReducer: sidebarReducer
 })
 
-export let store = createStore(reducers)
+export let store = legacy_createStore(reducers) /// переделать
 

@@ -6,13 +6,13 @@ import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {StoreType} from "./Redux/Store";
+import {RootState} from "./Redux/Redux-store";
 
 
 
 
 
-function App(props: StoreType) {
+function App(props: RootState) {
 
     return (
         <BrowserRouter>
@@ -25,8 +25,8 @@ function App(props: StoreType) {
             {/*<Route path='/dialogs' component={Dialogs} />*/}
 
            <Routes>
-               <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogPage} dispatch={props.dispatch} />} />
-               <Route path="/profile" element={<Profile profilePage={props.state.profilePage}
+               <Route path="/dialogs" element={<Dialogs dialogPage={props.getState().dialogReducer} dispatch={props.dispatch} />} />
+               <Route path="/profile" element={<Profile profilePage={props.getState().profileReducer}
                                                         dispatch={props.dispatch}
                                                          />} />
                {/*<Route path="/messages" element={<Profile />} />*/}
