@@ -6,38 +6,43 @@ import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {RootState} from "./Redux/Redux-store";
+import {AppDispatch, AppStateType, RootState} from "./Redux/Redux-store";
+import {CombinedState, Unsubscribe} from "@reduxjs/toolkit";
 
 
+type AppPropsType = {
+    state: RootState
+    dispatch: AppDispatch
+    subscribe: (listener: () => void) => Unsubscribe
+}
 
-
-
-function App(props: RootState) {
+function App(props: AppPropsType) {
 
     return (
         <BrowserRouter>
-        <div className="App-Wraper">
-            <Header/>
-            <NavBar/>
+            <div className="App-Wraper">
+                <Header/>
+                <NavBar/>
 
-            <div className='App-Wraper-content'>
+                <div className='App-Wraper-content'>
 
-            {/*<Route path='/dialogs' component={Dialogs} />*/}
+                    {/*<Route path='/dialogs' component={Dialogs} />*/}
 
-           <Routes>
-               <Route path="/dialogs" element={<Dialogs dialogPage={props.getState().dialogReducer} dispatch={props.dispatch} />} />
-               <Route path="/profile" element={<Profile profilePage={props.getState().profileReducer}
-                                                        dispatch={props.dispatch}
-                                                         />} />
-               {/*<Route path="/messages" element={<Profile />} />*/}
-               {/*<Route path="/news" element={<Profile />} />*/}
-               {/*<Route path="/music" element={<Profile />} />*/}
-               {/*<Route path="/settings" element={<Profile />} />*/}
-           </Routes>
+                    <Routes>
+                        <Route path="/dialogs" element={<Dialogs dialogPage={props.state.dialogReducer}
+                                                                 dispatch={props.dispatch}/>}/>
+                        <Route path="/profile" element={<Profile profilePage={props.state.profileReducer}
+                                                                 dispatch={props.dispatch}
+                        />}/>
+                        {/*<Route path="/messages" element={<Profile />} />*/}
+                        {/*<Route path="/news" element={<Profile />} />*/}
+                        {/*<Route path="/music" element={<Profile />} />*/}
+                        {/*<Route path="/settings" element={<Profile />} />*/}
+                    </Routes>
+
+                </div>
 
             </div>
-
-        </div>
         </BrowserRouter>
     );
 }

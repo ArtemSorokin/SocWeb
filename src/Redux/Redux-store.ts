@@ -3,7 +3,8 @@ import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
 
-export type RootState = typeof store
+export type RootState = ReturnType< typeof store.getState>
+export type AppDispatch =  typeof store.dispatch
 // export type State = ReturnType<RootState>
 // export type StateType = {
 //     dialogPage: {
