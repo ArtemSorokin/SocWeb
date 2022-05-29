@@ -32,7 +32,7 @@ let dialogInitialState =  {
 }
 
 
-export const dialogReducer = (state:StateArgumentType = dialogInitialState, action: ActionsTypes):any => {
+export const dialogReducer = (state:StateArgumentType = dialogInitialState, action: ActionsTypes):StateArgumentType => {
 
     if (action.type === NewDialogMessageText) {
 
