@@ -5,27 +5,7 @@ import {sidebarReducer} from "./SidebarReducer";
 
 export type RootState = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
-// export type State = ReturnType<RootState>
-// export type StateType = {
-//     dialogPage: {
-//         dialogData: Array<{ id: number, name: string }>
-//         messageData: Array<{ message: string, likeCount?: number }>
-//         newDialogMessageText:string
-//     },
-//     profilePage: {
-//         postData: Array<{ message: string, likes: number }>,
-//         newPostText: string
-//     }
-// }
 
-// export type StoreType = {
-//     state: RootState
-//     // subscribe: (observer:(state:StateType)=>void)=> void
-//     subscribe:(listener: () => void) => Unsubscribe  // ?????
-//     dispatch:(action: AddPostActionType | UpdatePostTextActionType)=>void
-//
-//
-// }
 type  AddPostActionType = {
     type:'AddPost'
 }

@@ -11,7 +11,8 @@ let renderEntierThree = (state: RootState) => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={state} dispatch={store.dispatch.bind(store)}
-                 subscribe={store.subscribe}/>
+                 // subscribe={store.subscribe}   /// xnj
+            />
         </React.StrictMode>,
         document.getElementById('root')
     );

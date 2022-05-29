@@ -2,51 +2,35 @@ import React, {createRef} from 'react';
 import s from './MyPosts.module.css'
 import {MyPost} from "./MyPost/MyPost";
 import { AddPostActionCreator, UpdatePostTextActionCreator} from "../../../Redux/ProfileReducer";
+import {store} from "../../../Redux/Redux-store";
 
 
 
 
 
-export type MyPostPropsType = {
-    profilePage: {
-        postData: Array<{ message: string, likes: number }>
-        newPostText: string
-    }
-    // addPost: (newMessage: string) => void
-    // updatePostText: (newPostText: string) => void
-    dispatch:(action:any)=>void   /// разобраться
-
+export type MyPostsPropsType = {
+onChange: (text:string)=> void
+    addPost: ()=> void
+    newPostText: string
+    postData:Array<{ message: string, likes: number }>
 }
 
 
+export const MyPosts = (props: MyPostsPropsType) => {
 
-
-
-
-export const MyPosts = (props: MyPostPropsType) => {
-
-    let postElement = props.profilePage.postData.map(p => <MyPost message={p.message} like={p.likes}/>)
+    let postElement = props.postData.map((p) => <MyPost message={p.message} likes={p.likes}/>)
 
 
     let textPost = React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
-
-
-        // @ts-ignore // Поправить
-
-        props.dispatch(AddPostActionCreator())
-        // @ts-ignore
-        // textPost.current.value = ''
-
+         props.addPost()
     }
 
     let changePostText = () => {
-        //
-    // @ts-ignore
+        // @ts-ignore
         let text: string = textPost.current.value
-        let action = UpdatePostTextActionCreator(text);
-        props.dispatch(action)
+        props.onChange(text)
 
 
     }
@@ -55,7 +39,7 @@ export const MyPosts = (props: MyPostPropsType) => {
         <div> My Posts</div>
         <div>
             <div>
-                <textarea ref={textPost} onChange={changePostText} value={props.profilePage.newPostText}/>
+                <textarea ref={textPost} onChange={changePostText} value={props.newPostText}/>
             </div>
 
             <div>

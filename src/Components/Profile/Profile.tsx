@@ -1,19 +1,24 @@
 import React from 'react';
 
-import {MyPostPropsType, MyPosts} from "./MyPosts/MyPosts";
+
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {AppDispatch} from "../../Redux/Redux-store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 
-// type
-// беру тип из компоненты ниже.
+type ProfilePropsType = {
+    profilePage:{postData: {message: string, likes: number}[], newPostText: string}
+    dispatch:  AppDispatch
+}
 
 
-export const Profile = (props: MyPostPropsType) => {
+
+export const Profile = (props: ProfilePropsType) => {
     return   (
         <div>
        <ProfileInfo/>
-       <MyPosts profilePage={props.profilePage}
+       <MyPostsContainer profilePage={props.profilePage}
                 dispatch={props.dispatch}/>
         </div>
 )

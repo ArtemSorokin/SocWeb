@@ -3,7 +3,7 @@ import s from './MyPost.module.css'
 
 export type MyPostPropsType = {
     message: string
-    like: number
+    likes: number
 }
 
 export const MyPost = (props: MyPostPropsType) => {
@@ -12,7 +12,7 @@ export const MyPost = (props: MyPostPropsType) => {
             <img src='https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg'/>
         {props.message}
         <div>
-            <span> {props.like} </span>
+            <span> {props.likes} </span>
         </div>
 
     </div>
