@@ -9,14 +9,14 @@ import {AppDispatch, AppStateType, RootState} from "./Redux/Redux-store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
-type AppPropsType = {
+// type AppPropsType = {
+//
+//     state: RootState
+//     dispatch: AppDispatch
+//     // subscribe: (listener: () => void) => Unsubscribe
+// }
 
-    state: RootState
-    dispatch: AppDispatch
-    // subscribe: (listener: () => void) => Unsubscribe
-}
-
-function App(props: AppPropsType) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -26,18 +26,10 @@ function App(props: AppPropsType) {
 
                 <div className='App-Wraper-content'>
 
-                    {/*<Route path='/dialogs' component={Dialogs} />*/}
-
                     <Routes>
-                        <Route path="/dialogs" element={<DialogsContainer dialogPage={props.state.dialogReducer}
-                                                                 dispatch={props.dispatch}/>}/>
-                        <Route path="/profile" element={<Profile profilePage={props.state.profileReducer}
-                                                                 dispatch={props.dispatch}
-                        />}/>
-                        {/*<Route path="/messages" element={<Profile />} />*/}
-                        {/*<Route path="/news" element={<Profile />} />*/}
-                        {/*<Route path="/music" element={<Profile />} />*/}
-                        {/*<Route path="/settings" element={<Profile />} />*/}
+                        <Route path="/dialogs" element={<DialogsContainer />}/>
+                        <Route path="/profile" element={<Profile/>}/>
+
                     </Routes>
 
                 </div>
