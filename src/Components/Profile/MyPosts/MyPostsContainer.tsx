@@ -22,14 +22,14 @@ export const MyPostsContainer = () => {
     return ( <ReactContextForApp.Consumer>
             { store => {
                 let addPost = () => {
-                    // @ts-ignore
+                    debugger
+
                     store.dispatch(AddPostActionCreator())
                 }
 
-                let changePostText = (text: string) => {
+                let changePostText = (newPostText: string) => {
 
-                    let action = UpdatePostTextActionCreator(text);
-                    // @ts-ignore
+                    let action = UpdatePostTextActionCreator(newPostText);
                     store.dispatch(action)
                 }
                 return (

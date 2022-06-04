@@ -1,4 +1,5 @@
 import {ActionsTypes} from "./Redux-store";
+import {debug} from "util";
 
 type StateArgumentType = {
 
@@ -24,11 +25,11 @@ let initialState = {
 }
 
 export const UpdatePostTextActionCreator= (text: string)=> ({type: UpdatePostText, newPostText: text})
-export const AddPostActionCreator = ()=>({type: AddPost})
+export const AddPostActionCreator = ()=>(  {type: AddPost})
 
 
 
-export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes):any => {
+export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes): StateArgumentType => {
     debugger
 
     if(action.type === AddPost) {

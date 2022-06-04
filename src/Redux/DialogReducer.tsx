@@ -1,6 +1,6 @@
 import {ActionsTypes} from "./Redux-store";
 
-type StateArgumentType = {
+export type StateArgumentType = {  // кспорт убрать
 
         dialogData: Array<{ id: number, name: string }>
         messageData: Array<{ message: string, likeCount?: number }>

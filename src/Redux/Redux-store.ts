@@ -5,6 +5,10 @@ import {sidebarReducer} from "./SidebarReducer";
 
 export type RootState = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
+export type StoreType = typeof store
+
+
+
 
 type  AddPostActionType = {
     type:'AddPost'
@@ -24,7 +28,7 @@ type AddDialogMessageText = {
     type: 'AddDialogMessageText'
 }
 
-export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText
+ export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>

@@ -1,8 +1,6 @@
 import React, {createRef} from 'react';
-import s from './MyPosts.module.css'
 import {MyPost} from "./MyPost/MyPost";
-import { AddPostActionCreator, UpdatePostTextActionCreator} from "../../../Redux/ProfileReducer";
-import {store} from "../../../Redux/Redux-store";
+
 
 
 

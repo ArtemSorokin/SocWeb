@@ -5,18 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import {RootState, store} from "./Redux/Redux-store";
 
 import App from "./App";
-import {ReactContextForApp} from "./ReactContext";
+import {Provider, ReactContextForApp} from "./ReactContext";
 
 
 let renderEntierThree = (props: RootState) => {
     ReactDOM.render(
         <React.StrictMode>
-            <ReactContextForApp.Provider
-                value={store}>
+            <Provider
+                store={store}>
             <App
                  // subscribe={store.subscribe}   /// xnj
             />
-            </ReactContextForApp.Provider>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

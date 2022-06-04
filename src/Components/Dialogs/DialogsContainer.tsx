@@ -1,19 +1,17 @@
-import React, {ChangeEvent} from 'react';
-import s from './Dialogs.module.css'
-import {DialogItem} from "./DialogItem/DialogItem";
-import {MessageItem} from "./MessageItem/MessageItem";
+import React from 'react';
+
 import {AddDialogMessageTextCreator, NewDialogMessageTextCreator} from "../../Redux/DialogReducer";
 import {Dialogs} from "./Dialogs";
 import {ReactContextForApp} from "../../ReactContext";
 
-type DialogsContainerPropsType = {
-    dialogPage: {
-        dialogData: Array<{ id: number, name: string }>
-        messageData: Array<{ message: string, likeCount?: number }>
-        newDialogMessageText: string
-    }
-    dispatch: (action: any) => void
-}
+// type DialogsContainerPropsType = {
+//     dialogPage: {
+//         dialogData: Array<{ id: number, name: string }>
+//         messageData: Array<{ message: string, likeCount?: number }>
+//         newDialogMessageText: string
+//     }
+//     dispatch: (action: any) => void
+// }
 
 export const DialogsContainer = () => {
 
@@ -28,12 +26,12 @@ export const DialogsContainer = () => {
             { store=> {
                 let addMessageFromUser = () => {
 
-                    // @ts-ignore
+
                     store.dispatch(AddDialogMessageTextCreator())
                 }
 
                 let onChangeMessageFromUser = (text: string) => {
-                    // @ts-ignore
+
                     store.dispatch(NewDialogMessageTextCreator(text))
                 }
 

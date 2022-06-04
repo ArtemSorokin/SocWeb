@@ -7,10 +7,10 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 
-type ProfilePropsType = {
-    profilePage:{postData: {message: string, likes: number}[], newPostText: string}
-    dispatch:  AppDispatch
-}
+// type ProfilePropsType = {
+//     profilePage:{postData: {message: string, likes: number}[], newPostText: string}
+//     dispatch:  AppDispatch
+// }
 
 
 
