@@ -6,7 +6,6 @@ type StateArgumentType = {
         postData: Array<{ message: string, likes: number }>,
         newPostText: string
 
-
 }
 
 

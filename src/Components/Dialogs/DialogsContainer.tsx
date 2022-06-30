@@ -2,7 +2,9 @@ import React from 'react';
 
 import {AddDialogMessageTextCreator, NewDialogMessageTextCreator} from "../../Redux/DialogReducer";
 import {Dialogs} from "./Dialogs";
-import {ReactContextForApp} from "../../ReactContext";
+
+import {connect} from "react-redux";
+import {AppDispatch, RootState} from "../../Redux/Redux-store";
 
 // type DialogsContainerPropsType = {
 //     dialogPage: {
@@ -13,39 +15,22 @@ import {ReactContextForApp} from "../../ReactContext";
 //     dispatch: (action: any) => void
 // }
 
-export const DialogsContainer = () => {
 
 
-// map
-//     let dialogElements= props.dialogPage.dialogData.map( d =>   <DialogItem id={d.id} name={d.name}/> )
-//     let messageElement = props.dialogPage.messageData.map( m => <MessageItem message={m.message} likeCount={m.likeCount}/>)
-
-
-    return (
-        <ReactContextForApp.Consumer>
-            { store=> {
-                let addMessageFromUser = () => {
-
-
-                    store.dispatch(AddDialogMessageTextCreator())
-                }
-
-                let onChangeMessageFromUser = (text: string) => {
-
-                    store.dispatch(NewDialogMessageTextCreator(text))
-                }
-
-
-                return ( <Dialogs dialogdata={store.getState().dialogReducer.dialogData}
-                                  AddDialogMessageText={addMessageFromUser}
-                                  ChangeDialogMessageText={onChangeMessageFromUser}
-                                  newDialogMessageText={store.getState().dialogReducer.newDialogMessageText}
-                                  messageData={store.getState().dialogReducer.messageData}
-
-                />)
-               }
-               }
-
-        </ReactContextForApp.Consumer>
-            )
+let mapStateToProps = (state:RootState)=> {
+    return {
+        dialogdata: state.dialogReducer.dialogData,
+        newDialogMessageText: state.dialogReducer.newDialogMessageText,
+        messageData: state.dialogReducer.messageData
+    }
 }
+
+let mapDispatchToProps = (dispatch: any)=> {      // type
+    return{
+        AddDialogMessageText: ()=> {    dispatch(AddDialogMessageTextCreator()) },
+        ChangeDialogMessageText: (text: string)=>{  dispatch(NewDialogMessageTextCreator(text))}
+    }
+
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

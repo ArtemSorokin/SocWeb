@@ -5,7 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import {RootState, store} from "./Redux/Redux-store";
 
 import App from "./App";
-import {Provider, ReactContextForApp} from "./ReactContext";
+import {Provider} from "react-redux";
+
 
 
 let renderEntierThree = (props: RootState) => {
