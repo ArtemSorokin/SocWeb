@@ -7,9 +7,6 @@ export type RootState = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
 export type StoreType = typeof store
 
-
-
-
 type  AddPostActionType = {
     type:'AddPost'
 }
@@ -41,3 +38,6 @@ let reducers = combineReducers({
 
 export let store = legacy_createStore(reducers) /// переделать
 
+
+ // @ts-ignore
+window.store = store

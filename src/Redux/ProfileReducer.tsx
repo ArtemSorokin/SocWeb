@@ -37,13 +37,16 @@ export const profileReducer = (state:StateArgumentType = initialState, action: A
             likes:0
 
         }
-        state.postData.push(newPost)
-        state.newPostText = ''
-
+        let copyState = {...state}
+         copyState.postData = [...state.postData]
+        copyState.postData.push(newPost)
+        copyState.newPostText = ''
+return copyState
     } else if (action.type === UpdatePostText) {
-        state.newPostText = action.newPostText
-
-
+        let copyState = {...state}
+        copyState.newPostText = action.newPostText
+        return copyState
     }
     return state
 }
+

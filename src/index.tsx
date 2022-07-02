@@ -9,7 +9,7 @@ import {Provider} from "react-redux";
 
 
 
-let renderEntierThree = (props: RootState) => {
+// let renderEntierThree = (props: RootState) => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider
@@ -21,14 +21,14 @@ let renderEntierThree = (props: RootState) => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
-renderEntierThree(store.getState())
+// }
+// renderEntierThree(store.getState())
 
 
-store.subscribe(() => {
-    let state = store.getState()
-    renderEntierThree(state)
-})
+// store.subscribe(() => {
+//     let state = store.getState()
+//     renderEntierThree(state)
+// })
 
 
 // If you want to start measuring performance in your app, pass a function
