@@ -35,23 +35,18 @@ let dialogInitialState =  {
 export const dialogReducer = (state:StateArgumentType = dialogInitialState, action: ActionsTypes):StateArgumentType => {
 
     if (action.type === NewDialogMessageText) {
-         let copyState = {...state}
 
-        copyState.newDialogMessageText = action.newDialogMessageText
 
-        return copyState
+        return {...state, newDialogMessageText: action.newDialogMessageText}
 
         //Добавления сообщения в компоненете диалог
     } else if (action.type === AddDialogMessageText) {
 
-        let newDialogMessageText = {message: state.newDialogMessageText, likeCount: 10 }
+        // let newDialogMessageText = {message: state.newDialogMessageText, likeCount: 10 }
 
-        let copyState = {...state}
-        copyState.messageData = [...state.messageData]
+        // copyState.messageData.push(newDialogMessageText)
 
-        copyState.messageData.push(newDialogMessageText)
-        copyState.newDialogMessageText = ''
-        return copyState
+        return {...state, newDialogMessageText: '',  messageData: [...state.messageData, {message: state.newDialogMessageText, likeCount: 10 }] }
     }
 
     return state

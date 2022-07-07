@@ -27,25 +27,19 @@ export const UpdatePostTextActionCreator= (text: string)=> ({type: UpdatePostTex
 export const AddPostActionCreator = ()=>(  {type: AddPost})
 
 
-
 export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes): StateArgumentType => {
-    debugger
 
     if(action.type === AddPost) {
         let newPost: {message: string, likes: number} = {
             message: state.newPostText,
             likes:0
-
         }
-        let copyState = {...state}
-         copyState.postData = [...state.postData]
-        copyState.postData.push(newPost)
-        copyState.newPostText = ''
-return copyState
+
+        return {...state, postData: [...state.postData, newPost], newPostText: ''}
+
     } else if (action.type === UpdatePostText) {
-        let copyState = {...state}
-        copyState.newPostText = action.newPostText
-        return copyState
+
+        return  {...state, newPostText: action.newPostText}
     }
     return state
 }
