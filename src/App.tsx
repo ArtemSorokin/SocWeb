@@ -7,6 +7,7 @@ import {Profile} from "./Components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {AppDispatch, AppStateType, RootState} from "./Redux/Redux-store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import { Users } from './Components/Users/Users';
 
 
 // type AppPropsType = {
@@ -29,6 +30,7 @@ function App() {
                     <Routes>
                         <Route path="/dialogs" element={<DialogsContainer />}/>
                         <Route path="/profile" element={<Profile/>}/>
+                        <Route path = "/users" element={<Users/>}/>
 
                     </Routes>
 

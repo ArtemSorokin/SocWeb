@@ -25,7 +25,16 @@ type AddDialogMessageText = {
     type: 'AddDialogMessageText'
 }
 
- export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText
+type FOLLOWActionsType = {
+    type: 'FOLLOW'
+    userId: number
+}
+type UNFOLLOWActionsType = {
+    type: 'UNFOLLOW'
+    userId: number
+}
+
+ export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText | FOLLOWActionsType | UNFOLLOWActionsType
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>

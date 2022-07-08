@@ -1,0 +1,14 @@
+.Navigation {
+    grid-area: Navigation;
+    background-color: cadetblue;
+
+}
+
+.Item a {
+    color: white;
+    text-decoration: none;
+}
+
+.Item a.active {
+    color: gold;
+}
