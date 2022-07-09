@@ -5,15 +5,16 @@ const UNFOLLOW = 'UNFOLLOW'
 const SetUsers = 'SETUSERS'
 
 type UserUnit = {id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }
+
 export type UsersInitStateType = {
     users: Array<UserUnit>
 }
 
 let UsersInitState:UsersInitStateType = {
     users: [
-        {id: 1, photoUrl:'https://www.meme-arsenal.com/create/meme/3509632', followed: false, fullname: 'Jotaro', status:'Travel to Egypt', location:{city: 'Budapecht', country:'Cracogia'}},
-        {id: 2, photoUrl:'https://www.meme-arsenal.com/create/meme/3509632', followed: false, fullname: 'Polnaref', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}},
-        {id: 3, photoUrl:'https://www.meme-arsenal.com/create/meme/3509632',followed: true, fullname: 'Kakeyn', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}}
+        {id: 1, photoUrl: 'https://www.meme-arsenal.com/create/meme/3509632', followed: false, fullname: 'Jotaro', status:'Travel to Egypt', location:{city: 'Budapecht', country:'Cracogia'}},
+        {id: 2, photoUrl: 'https://www.meme-arsenal.com/create/meme/3509632', followed: false, fullname: 'Polnaref', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}},
+        {id: 3, photoUrl: 'https://www.meme-arsenal.com/create/meme/3509632', followed: true, fullname: 'Kakeyn', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}}
     ]
 }
 
