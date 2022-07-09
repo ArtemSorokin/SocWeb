@@ -2,6 +2,7 @@ import {combineReducers, configureStore, createStore, legacy_createStore, Unsubs
 import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
+import {UsersReducer} from "./UsersReducer";
 
 export type RootState = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
@@ -34,7 +35,12 @@ type UNFOLLOWActionsType = {
     userId: number
 }
 
- export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText | FOLLOWActionsType | UNFOLLOWActionsType
+type SetusersActionType = {
+    type: 'SETUSERS'
+    usersArray: Array<{id: number, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }>
+}
+
+ export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText | FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>
@@ -42,7 +48,8 @@ export type AppStateType = ReturnType<ReducersType>
 let reducers = combineReducers({
     profileReducer: profileReducer,
     dialogReducer: dialogReducer,
-    sidebarReducer: sidebarReducer
+    sidebarReducer: sidebarReducer,
+    usersPage: UsersReducer
 })
 
 export let store = legacy_createStore(reducers) /// переделать

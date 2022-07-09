@@ -1,21 +1,12 @@
 import React from 'react';
-
 import './App.css';
 import {Header} from "./Components/Header/Header";
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Profile} from "./Components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {AppDispatch, AppStateType, RootState} from "./Redux/Redux-store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import { Users } from './Components/Users/Users';
+import UsersContainer from "./Components/Users/UsersContainer";
 
-
-// type AppPropsType = {
-//
-//     state: RootState
-//     dispatch: AppDispatch
-//     // subscribe: (listener: () => void) => Unsubscribe
-// }
 
 function App() {
 
@@ -30,7 +21,7 @@ function App() {
                     <Routes>
                         <Route path="/dialogs" element={<DialogsContainer />}/>
                         <Route path="/profile" element={<Profile/>}/>
-                        <Route path = "/users" element={<Users/>}/>
+                        <Route path = "/users" element={<UsersContainer/>}/>
 
                     </Routes>
 

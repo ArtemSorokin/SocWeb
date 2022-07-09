@@ -4,7 +4,7 @@ import {AddDialogMessageTextCreator, NewDialogMessageTextCreator} from "../../Re
 import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
-import {AppDispatch, RootState} from "../../Redux/Redux-store";
+import {RootState} from "../../Redux/Redux-store";
 
 // type DialogsContainerPropsType = {
 //     dialogPage: {

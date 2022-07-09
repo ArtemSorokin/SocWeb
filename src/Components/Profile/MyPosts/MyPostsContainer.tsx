@@ -1,7 +1,7 @@
 import React, {createRef} from 'react';
 import {AddPostActionCreator, UpdatePostTextActionCreator} from "../../../Redux/ProfileReducer";
 import {MyPosts} from "./MyPosts";
-import {AppStateType, RootState} from "../../../Redux/Redux-store";
+import {RootState} from "../../../Redux/Redux-store";
 import {connect} from "react-redux";
 
 
