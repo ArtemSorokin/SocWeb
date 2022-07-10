@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {RootState, store} from "./Redux/Redux-store";
+import {store} from "./Redux/Redux-store";
 
 import App from "./App";
 import {Provider} from "react-redux";

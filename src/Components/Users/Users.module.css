@@ -1,14 +1,6 @@
-.Navigation {
-    grid-area: Navigation;
-    background-color: cadetblue;
 
-}
 
-.Item a {
-    color: white;
-    text-decoration: none;
-}
-
-.Item a.active {
-    color: gold;
+.avatar {
+    width: 100px;
+    height: 100px;
 }

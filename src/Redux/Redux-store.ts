@@ -28,11 +28,11 @@ type AddDialogMessageText = {
 
 type FOLLOWActionsType = {
     type: 'FOLLOW'
-    userId: number
+    userID: number
 }
 type UNFOLLOWActionsType = {
     type: 'UNFOLLOW'
-    userId: number
+    userID: number
 }
 
 type SetusersActionType = {

@@ -21,7 +21,7 @@ function App() {
                     <Routes>
                         <Route path="/dialogs" element={<DialogsContainer />}/>
                         <Route path="/profile" element={<Profile/>}/>
-                        <Route path = "/users" element={<UsersContainer/>}/>
+                        <Route path ="/users" element={<UsersContainer/>}/>
                     </Routes>
 
                 </div>
