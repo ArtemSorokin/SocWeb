@@ -6,23 +6,35 @@ import {
   FollowUserActionCreator,
   SetUsersActionCreator,
   UnfollowUserActionCreator,
-  UsersInitStateType
+  UsersInitStateType, UserUnitType
 } from "../../Redux/UsersReducer";
+import {Dispatch} from "@reduxjs/toolkit";
 
 
+type mapStateToPropsType = {
+  users: Array<UserUnitType>    // /////////////////////////////////////
+}
 
-const mapStateToProps = (state: RootState)=> {
+type mapDispatchToPropsType = {
+  follow: (userId: number)=> void,
+  unFollow: (userId: number)=> void,
+  setUsers: (usersArray: Array<UserUnitType>) => void
+}
+
+export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsType
+
+const mapStateToProps = (state: RootState): mapStateToPropsType=> {
   return {
     users: state.usersPage.users
   }
 }
 
-const mapDispatchToProps = (dispatch: any)=>{
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType=>{
   debugger
   return {
     follow: (userId: number)=> {dispatch(FollowUserActionCreator(userId))},
     unFollow: (userId: number)=> {dispatch(UnfollowUserActionCreator(userId))},
-    setUsers: (usersArray: UsersInitStateType) => {dispatch(SetUsersActionCreator(usersArray))}
+    setUsers: (usersArray: Array<UserUnitType> ) => {dispatch(SetUsersActionCreator(usersArray))}
   }
 }
 

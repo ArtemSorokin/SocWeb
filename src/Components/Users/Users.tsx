@@ -3,18 +3,28 @@ import {
     UsersInitStateType
 } from "../../Redux/UsersReducer";
 import s from './Users.module.css'
+import {UserComponentPropsType} from "./UsersContainer";
 
-type UserUnit = {id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }
+// type UserUnit = {id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }
+//
+// type UsersPropsType = {
+//     users: Array<UserUnit>
+//     follow: (userId: number)=> void,
+//     unFollow: (userId: number)=> void,
+//     setUsers: (usersArray: UsersInitStateType) => void
+// }
 
-type UsersPropsType = {
-    users: Array<UserUnit>
-    follow: (userId: number)=> void,
-    unFollow: (userId: number)=> void,
-    setUsers: (usersArray: UsersInitStateType) => void
-}
 
+export const Users = (props: UserComponentPropsType) => {
 
-export const Users = (props: UsersPropsType) => {
+    if(props.users.length === 0) {
+        props.setUsers(  [
+            {id: 1, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Jotaro', status:'Travel to Egypt', location:{city: 'Budapecht', country:'Cracogia'}},
+            {id: 2, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: false, fullname: 'Polnaref', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}},
+            {id: 3, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Kakeyn', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}}
+        ])
+    }
+
 
 
     return (<div>

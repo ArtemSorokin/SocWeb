@@ -4,10 +4,12 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SetUsers = 'SETUSERS'
 
-type UserUnit = {id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }
+export type UserUnitType ={
+    id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string}
+}
 
 export type UsersInitStateType = {
-    users: Array<UserUnit>
+    users: Array<UserUnitType>
 }
 
 let UsersInitState:UsersInitStateType = {
@@ -20,7 +22,7 @@ let UsersInitState:UsersInitStateType = {
 
 export const FollowUserActionCreator = (userID: number)=>  ({type: FOLLOW, userID} as const )
 export const UnfollowUserActionCreator = (userID: number)=> ({type: UNFOLLOW, userID} as const)
-export const SetUsersActionCreator = (usersArray:UsersInitStateType )=> ({type: SetUsers, usersArray} as const)
+export const SetUsersActionCreator = (usersArray:Array<UserUnitType>  )=> ({type: SetUsers, usersArray} as const)
 
 
 
