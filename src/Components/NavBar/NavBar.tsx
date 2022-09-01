@@ -11,7 +11,9 @@ const active = (navData: { isActive: any; }) => navData.isActive ? s.active : s.
         <div className={s.Item}>
             <NavLink to='/profile' className = {active}>Profile</NavLink>
         </div>
-
+        <div className={s.Item}>
+            <NavLink to='/users' className = {active}>Users</NavLink>
+        </div>
         <div className={s.Item}>
             <NavLink to='/news' className = {active}>News</NavLink>
         </div>

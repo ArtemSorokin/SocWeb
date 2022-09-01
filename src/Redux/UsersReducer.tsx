@@ -5,7 +5,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SetUsers = 'SETUSERS'
 
 export type UserUnitType ={
-    id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string}
+    id: number, photoUrl: string, followed: boolean, name: string, status: string, location:{city: string, country: string}
 }
 
 export type UsersInitStateType = {
@@ -13,11 +13,7 @@ export type UsersInitStateType = {
 }
 
 let UsersInitState:UsersInitStateType = {
-    users: [
-        {id: 1, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Jotaro', status:'Travel to Egypt', location:{city: 'Budapecht', country:'Cracogia'}},
-        {id: 2, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: false, fullname: 'Polnaref', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}},
-        {id: 3, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Kakeyn', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}}
-    ]
+    users: []
 }
 
 export const FollowUserActionCreator = (userID: number)=>  ({type: FOLLOW, userID} as const )
@@ -59,3 +55,8 @@ export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: 
     }
 }
 
+//
+// {id: 1, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Jotaro', status:'Travel to Egypt', location:{city: 'Budapecht', country:'Cracogia'}},
+// {id: 2, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: false, fullname: 'Ivan', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}},
+// {id: 3, photoUrl: 'https://www.meme-arsenal.com/memes/7eda9d4eada2e1aa3fd2abb866360633.jpg', followed: true, fullname: 'Light', status:'Travel too', location:{city: 'Budapecht', country:'Cracogia'}}
+//

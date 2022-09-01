@@ -30,7 +30,7 @@ const mapStateToProps = (state: RootState): mapStateToPropsType=> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType=>{
-  debugger
+
   return {
     follow: (userId: number)=> {dispatch(FollowUserActionCreator(userId))},
     unFollow: (userId: number)=> {dispatch(UnfollowUserActionCreator(userId))},
