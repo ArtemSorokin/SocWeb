@@ -37,7 +37,7 @@ type UNFOLLOWActionsType = {
 
 type SetusersActionType = {
     type: 'SETUSERS'
-    usersArray: Array<{id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }>
+    usersArray: Array<{id: number, photoUrl: string, followed: boolean, name: string, status: string, location:{city: string, country: string} }>
 }
 
  export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText | FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType

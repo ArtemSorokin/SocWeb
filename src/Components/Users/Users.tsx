@@ -4,7 +4,8 @@ import {
 } from "../../Redux/UsersReducer";
 import s from './Users.module.css'
 import {UserComponentPropsType} from "./UsersContainer";
-import axios from 'axios'
+import axios from 'axios';
+import emptyAvatar from '../../images/userWithotPhoto/Avatar-PNG-Images.png';
 
 // type UserUnit = {id: number, photoUrl: string, followed: boolean, fullname: string, status: string, location:{city: string, country: string} }
 //
@@ -35,7 +36,7 @@ export const Users = (props: UserComponentPropsType) => {
             return (<div key={u.id}>
       <span>
           <div>
-              <img src={u.photoUrl} className={s.avatar}/>
+              <img src={u.photoUrl == null? emptyAvatar: u.photoUrl} className={s.avatar}/>
           </div>
           <div>
               {u.followed ?
