@@ -8,34 +8,34 @@ import axios from 'axios';
 import emptyAvatar from '../../images/userWithotPhoto/Avatar-PNG-Images.png';
 
 
-
-
 export class UsersClassComponent extends React.Component<UserComponentPropsType> {
 
-    getUsers = ()=> {
-        if(this.props.users.length === 0) {
 
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
+    constructor(props: UserComponentPropsType) {
+        super(props)
 
-                this.props.setUsers(response.data.items)
-            })
-        }
+        // запрос списка юзеров
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
 
-    render () {
+
+    render() {
         return (<div>
-            <button onClick={this.getUsers}>Show USers</button>
 
             {this.props.users.map((u) => {
 
                 return (<div key={u.id}>
       <span>
           <div>
-              <img src={u.photoUrl == null? emptyAvatar: u.photoUrl} className={s.avatar}/>
+              <img src={u.photoUrl == null ? emptyAvatar : u.photoUrl} className={s.avatar}/>
           </div>
           <div>
               {u.followed ?
-                  <button onClick={() => {this.props.unFollow(u.id) }}> Follow</button>
+                  <button onClick={() => {
+                      this.props.unFollow(u.id)
+                  }}> Follow</button>
                   : <button onClick={() => {
                       this.props.follow(u.id)
                   }}> Unfollow</button>}

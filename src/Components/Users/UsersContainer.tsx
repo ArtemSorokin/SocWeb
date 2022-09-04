@@ -11,11 +11,11 @@ import {Dispatch} from "@reduxjs/toolkit";
 import {UsersClassComponent} from "./UsersClassComponent ";
 
 
-type mapStateToPropsType = {
+export type mapStateToPropsType = {
     users: Array<UserUnitType>
 }
 
-type mapDispatchToPropsType = {
+export type mapDispatchToPropsType = {
     follow: (userId: number) => void,
     unFollow: (userId: number) => void,
     setUsers: (usersArray: Array<UserUnitType>) => void
