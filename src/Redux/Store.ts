@@ -4,7 +4,7 @@ import {profileReducer} from "./ProfileReducer";
 // import {StateType} from "./Redux-store";
 
 
-let renderEntierThree = ()=>{}
+// let renderEntierThree = ()=>{}
 
 
 

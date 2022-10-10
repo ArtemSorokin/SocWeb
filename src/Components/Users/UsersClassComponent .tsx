@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    UsersInitStateType
-} from "../../Redux/UsersReducer";
 import s from './Users.module.css'
 import {UserComponentPropsType} from "./UsersContainer";
 import axios from 'axios';
@@ -10,16 +7,12 @@ import emptyAvatar from '../../images/userWithotPhoto/Avatar-PNG-Images.png';
 
 export class UsersClassComponent extends React.Component<UserComponentPropsType> {
 
-
-    constructor(props: UserComponentPropsType) {
-        super(props)
-
+    componentDidMount() {
         // запрос списка юзеров
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         })
     }
-
 
     render() {
         return (<div>

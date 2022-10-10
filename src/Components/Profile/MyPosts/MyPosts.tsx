@@ -2,15 +2,11 @@ import React, {createRef} from 'react';
 import {MyPost} from "./MyPost/MyPost";
 
 
-
-
-
-
 export type MyPostsPropsType = {
-onChange: (text:string)=> void
-    addPost: ()=> void
+    onChange: (text: string) => void
+    addPost: () => void
     newPostText: string
-    postData:Array<{ message: string, likes: number }>
+    postData: Array<{ message: string, likes: number }>
 }
 
 
@@ -22,7 +18,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     let textPost = React.createRef<HTMLTextAreaElement>()
 
     let addPost = () => {
-         props.addPost()
+        props.addPost()
     }
 
     let changePostText = () => {

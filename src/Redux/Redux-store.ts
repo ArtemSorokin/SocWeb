@@ -55,5 +55,3 @@ let reducers = combineReducers({
 export let store = legacy_createStore(reducers) /// переделать
 
 
- // @ts-ignore
-window.store = store
