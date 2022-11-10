@@ -4,7 +4,7 @@ import {AddDialogMessageTextCreator, NewDialogMessageTextCreator} from "../../Re
 import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
-import {RootState} from "../../Redux/Redux-store";
+import { RootStateType} from "../../Redux/Redux-store";
 
 // type DialogsContainerPropsType = {
 //     dialogPage: {
@@ -17,7 +17,7 @@ import {RootState} from "../../Redux/Redux-store";
 
 
 
-let mapStateToProps = (state:RootState)=> {
+let mapStateToProps = (state:RootStateType)=> {
     return {
         dialogdata: state.dialogReducer.dialogData,
         newDialogMessageText: state.dialogReducer.newDialogMessageText,

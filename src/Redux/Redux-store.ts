@@ -4,28 +4,24 @@ import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
 import {UsersReducer} from "./UsersReducer";
 
-export type RootState = ReturnType< typeof store.getState>
+export type RootStateType = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
 export type StoreType = typeof store
 
 type  AddPostActionType = {
     type:'AddPost'
 }
-
 type UpdatePostTextActionType = {
     type:'UpdatePostText'
     newPostText: string
 }
-
 type NewDialogMessageText = {
     type: 'NewDialogMessageText'
     newDialogMessageText: string
 }
-
 type AddDialogMessageText = {
     type: 'AddDialogMessageText'
 }
-
 type FOLLOWActionsType = {
     type: 'FOLLOW'
     userID: number
@@ -34,13 +30,22 @@ type UNFOLLOWActionsType = {
     type: 'UNFOLLOW'
     userID: number
 }
-
 type SetusersActionType = {
     type: 'SETUSERS'
     usersArray: Array<{id: number, photoUrl: string, followed: boolean, name: string, status: string, location:{city: string, country: string} }>
 }
+type SetCurrentPageActionType = {
+    type: 'SETCURRENTPAGE'
+    currentPage: number
+}
+type SetCurrenttotalCount = {
+    type: 'totalCount'
+    totalCount: number
+}
 
- export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText | FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType
+
+ export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText |
+     FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>

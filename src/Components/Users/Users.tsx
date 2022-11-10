@@ -22,6 +22,7 @@ const Users = (props: UserComponentPropsType) => {
 
 
     return (<div>
+
         <button onClick={getUsers}>Show USers</button>
 
         {props.users.map((u) => {

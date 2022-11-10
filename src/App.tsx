@@ -19,7 +19,7 @@ function App() {
                 <div className='App-Wraper-content'>
 
                     <Routes>
-                        <Route path="/dialogs" element={<DialogsContainer />}/>
+                            <Route path="/dialogs" element={<DialogsContainer />}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path ="/users" element={<UsersContainer/>}/>
                     </Routes>

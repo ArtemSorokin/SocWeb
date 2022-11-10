@@ -1,29 +1,28 @@
 import React, {createRef} from 'react';
 import {AddPostActionCreator, UpdatePostTextActionCreator} from "../../../Redux/ProfileReducer";
 import {MyPosts} from "./MyPosts";
-import {RootState} from "../../../Redux/Redux-store";
+import {RootStateType} from "../../../Redux/Redux-store";
 import {connect} from "react-redux";
 
 
-// export type MyPostPropsContainerType = {
-//     profilePage: {
-//         postData: Array<{ message: string, likes: number }>
-//         newPostText: string
-//     }
-//     dispatch: (action: any) => void
-//
-// }
+type mapStateToPropsType = {
+    newPostText: string
+    postData: Array<{ message: string, likes: number }>
+}
 
+type mapDispatchToPropsType = {
+    onChange: (newPostText: string)=> void
+    addPost:()=>void
+}
 
-
-let mapStateToProps = (state: RootState) => {
+let mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     return {
         newPostText: state.profileReducer.newPostText,
         postData: state.profileReducer.postData
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: any):mapDispatchToPropsType => {
 
     return {
         onChange: (newPostText: string)=>{

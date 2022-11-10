@@ -5,7 +5,7 @@ import s from './NavBar.module.css'
 
 
 export const NavBar = () => {
-const active = (navData: { isActive: any; }) => navData.isActive ? s.active : s.Item
+const active = (navData: { isActive: boolean; }) => navData.isActive ? s.active : s.Item
 
     return <nav className={s.Navigation}>
         <div className={s.Item}>
