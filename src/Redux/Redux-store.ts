@@ -2,7 +2,7 @@ import {combineReducers, legacy_createStore} from "@reduxjs/toolkit";
 import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
-import {UsersReducer} from "./UsersReducer";
+import { UsersReducer} from "./UsersReducer";
 
 export type RootStateType = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
@@ -42,10 +42,14 @@ type SetCurrenttotalCount = {
     type: 'totalCount'
     totalCount: number
 }
+type setIsFetchingPreloadGifPropsType= {
+    type: 'setIsFetchingPreloadGif'
+    isFetchingPreloadGif: boolean
+}
 
 
  export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText |
-     FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount
+     FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount | setIsFetchingPreloadGifPropsType
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>
