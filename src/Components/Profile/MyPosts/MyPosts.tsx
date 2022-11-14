@@ -30,7 +30,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
     }
 
     return <div>
-        <div> My Posts</div>
+        <div> My Posts </div>
         <div>
             <div>
                 <textarea ref={textPost} onChange={changePostText} value={props.newPostText}/>

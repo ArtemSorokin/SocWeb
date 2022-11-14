@@ -13,9 +13,10 @@ import {setUsersProfileAC} from "../../Redux/ProfileReducer";
  type mapDispatchToPropsType = {
     setUsersProfileAC: (profile:any)=> void
 }
-type ProfileClassContainerPropsType = mapStateToPropsType | mapDispatchToPropsType
+type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 export class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
+
     componentDidMount() {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
@@ -31,7 +32,6 @@ export class ProfileClassContainer extends React.Component<ProfileClassContainer
 
             <div>
                 <Profile {...this.props} profile={this.props.profile} />
-                <MyPostsContainer/>
             </div>
         )
 
