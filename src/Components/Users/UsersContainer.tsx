@@ -9,7 +9,6 @@ import {
     UnfollowUserActionCreator,
     UserUnitType
 } from "../../Redux/UsersReducer";
-import {Dispatch} from "@reduxjs/toolkit";
 import axios from "axios";
 import {Users} from "./Users";
 import Preloader from '../ResForAllComponrnts/Preloader/Preloader.png'
@@ -35,7 +34,10 @@ export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsTyp
 
 export class UsersClassComponent extends React.Component<UserComponentPropsType> {
 
+
+
     componentDidMount() {
+
         // запрос списка юзеров
         this.props.setIsFetchingPreloadGifAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesize}`).then(response => {
@@ -83,29 +85,6 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-//
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(FollowUserActionCreator(userId))
-//         },
-//         unFollow: (userId: number) => {
-//             dispatch(UnfollowUserActionCreator(userId))
-//         },
-//         setUsers: (usersArray: Array<UserUnitType>) => {
-//             dispatch(SetUsersActionCreator(usersArray))
-//         },
-//         setCurrentPage: (currentPage:number) => {
-//             dispatch(SetCurrentPageActionCreator(currentPage))
-//         },
-//         settotalCount: (totalCount:number) => {
-//             dispatch(settotalCountPageActionCreator(totalCount))
-//         },
-//         setIsFetchingPreloadGif: (isFetchingPreloadGif:boolean)=> {
-//             dispatch(setIsFetchingPreloadGifAC(isFetchingPreloadGif))
-//         }
-//     }
-// }
 
 
 export const UsersContainer = connect(mapStateToProps, {

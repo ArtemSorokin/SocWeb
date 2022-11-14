@@ -5,13 +5,14 @@ type StateArgumentType = {
 
         postData: Array<{ message: string, likes: number }>,
         newPostText: string
-
+        profile: any
 }
 
 
-// константы
+
 const UpdatePostText = 'UpdatePostText'
 const AddPost = 'AddPost'
+const setUsersProfile = "setUsersProfile"
 
 let initialState = {
     postData: [
@@ -20,14 +21,17 @@ let initialState = {
         {message:'Kto ti', likes: 14 },
         {message:'Kak tipizirovat', likes: 5 }
     ],
-        newPostText:'it-kamasutra'
+        newPostText:'it-kamasutra',
+         profile: null
 }
 
 export const UpdatePostTextActionCreator= (text: string)=> ({type: UpdatePostText, newPostText: text})
 export const AddPostActionCreator = ()=>(  {type: AddPost})
+export const setUsersProfileAC = (profile:any)=> (  {type: setUsersProfile, profile} )
 
 
 export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes): StateArgumentType => {
+    debugger
 
     if(action.type === AddPost) {
         let newPost: {message: string, likes: number} = {
@@ -40,6 +44,10 @@ export const profileReducer = (state:StateArgumentType = initialState, action: A
     } else if (action.type === UpdatePostText) {
 
         return  {...state, newPostText: action.newPostText}
+    }
+    else if (action.type === setUsersProfile) {
+
+        return  {...state, profile: action.profile }
     }
     return state
 }

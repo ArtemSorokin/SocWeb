@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import emptyAvatar from "../../images/userWithotPhoto/Avatar-PNG-Images.png";
 import {UserUnitType} from "../../Redux/UsersReducer";
+import {NavLink} from "react-router-dom";
 
 type usersFcComponrntPropsType = {
     users: Array<UserUnitType>
@@ -35,7 +36,9 @@ export const Users = (props: usersFcComponrntPropsType) => {
             return (<div key={u.id}>
       <span>
           <div>
+              <NavLink to='/profile'>
               <img src={u.photoUrl == null ? emptyAvatar : u.photoUrl} className={s.avatar}/>
+                  </NavLink>
           </div>
           <div>
               {u.followed ?

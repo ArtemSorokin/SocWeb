@@ -1,27 +1,20 @@
 import React from 'react';
-
-
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {AppDispatch} from "../../Redux/Redux-store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
-
-// type ProfilePropsType = {
-//     profilePage:{postData: {message: string, likes: number}[], newPostText: string}
-//     dispatch:  AppDispatch
-// }
+type ProfilePropsType = {
+    profile:any
+}
 
 
-
-export const Profile = () => {
+export const Profile = (props:ProfilePropsType) => {
     return   (
         <div>
-       <ProfileInfo/>
+       <ProfileInfo profile={props.profile} />
        <MyPostsContainer />
         </div>
 )
 }
 
 
-//store.dispatch.bind(store)

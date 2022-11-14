@@ -46,10 +46,15 @@ type setIsFetchingPreloadGifPropsType= {
     type: 'setIsFetchingPreloadGif'
     isFetchingPreloadGif: boolean
 }
+type setUsersProfilePropsType = {
+    type: 'setUsersProfile'
+    profile:any
+}
 
 
  export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText |
-     FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount | setIsFetchingPreloadGifPropsType
+     FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount |
+     setIsFetchingPreloadGifPropsType | setUsersProfilePropsType
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>
@@ -64,3 +69,5 @@ let reducers = combineReducers({
 export let store = legacy_createStore(reducers) /// переделать
 
 
+// @ts-ignore
+window.store = store // ?
