@@ -1,46 +1,60 @@
-import React from 'react';
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import React, {useEffect} from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
 import {setUsersProfileAC} from "../../Redux/ProfileReducer";
+import {useParams,} from "react-router-dom";
 
 
- type mapStateToPropsType = {
-     profile: any
+type mapStateToPropsType = {
+    profile: any
+
 }
- type mapDispatchToPropsType = {
-    setUsersProfileAC: (profile:any)=> void
+type mapDispatchToPropsType = {
+    setUsersProfileAC: (profile: any) => void
 }
 type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
-export class ProfileClassContainer extends React.Component<ProfileClassContainerPropsType> {
+export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => {
+    // let {userId} =   useParams()
+    let {userId} = useParams()
+    console.log(userId)
+    if (!userId) {
+        userId = '24946'
+    }
 
-    componentDidMount() {
+    // componentDidMount() {
+    //
+    //     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
+    //
+    //         this.props.setUsersProfileAC(response.data)
+    //     })
+    // }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
+    useEffect(() => {
+        /// useParams &&&&& props.profile.match.params.userId
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
 
-            this.props.setUsersProfileAC(response.data)
-
+            props.setUsersProfileAC(response.data)
         })
-    }
+    }, [userId])
+
+    return (
+
+        <div>
+            <Profile  {...props} profile={props.profile}/>
+
+        </div>
+    )
 
 
-    render() {
-        return (
-
-            <div>
-                <Profile {...this.props} profile={this.props.profile} />
-            </div>
-        )
-
-    }
 }
 
-let mapStatetoProps = (state:RootStateType): mapStateToPropsType=>({
+let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
     profile: state.profileReducer.profile
 })
+
 
 export const ProfileContainer = connect(mapStatetoProps, {setUsersProfileAC})(ProfileClassContainer)
 

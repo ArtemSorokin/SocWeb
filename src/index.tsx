@@ -30,5 +30,6 @@ import {Provider} from "react-redux";
 //     renderEntierThree(state)
 // })
 
-
+// @ts-ignore
+window.store = store
 reportWebVitals();

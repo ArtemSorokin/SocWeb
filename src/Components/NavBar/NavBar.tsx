@@ -1,5 +1,5 @@
 import React  from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import s from './NavBar.module.css'
 
 
@@ -9,10 +9,10 @@ const active = (navData: { isActive: boolean; }) => navData.isActive ? s.active 
 
     return <nav className={s.Navigation}>
         <div className={s.Item}>
-            <NavLink to='/profile' className = {active}>Profile</NavLink>
+            <NavLink to='/profile'  className = {active}>Profile</NavLink>
         </div>
         <div className={s.Item}>
-            <NavLink to='/users' className = {active}>Users</NavLink>
+            <NavLink to='/users'  className = {active}>Users</NavLink>
         </div>
         <div className={s.Item}>
             <NavLink to='/news' className = {active}>News</NavLink>

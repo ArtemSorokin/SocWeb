@@ -31,7 +31,7 @@ export const setUsersProfileAC = (profile:any)=> (  {type: setUsersProfile, prof
 
 
 export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes): StateArgumentType => {
-    debugger
+
 
     if(action.type === AddPost) {
         let newPost: {message: string, likes: number} = {

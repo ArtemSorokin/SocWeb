@@ -36,7 +36,7 @@ export const Users = (props: usersFcComponrntPropsType) => {
             return (<div key={u.id}>
       <span>
           <div>
-              <NavLink to='/profile'>
+              <NavLink to={`/profile/${u.id}`}>
               <img src={u.photoUrl == null ? emptyAvatar : u.photoUrl} className={s.avatar}/>
                   </NavLink>
           </div>
