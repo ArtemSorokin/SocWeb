@@ -17,7 +17,7 @@ let dialogInitialState =  {
         {id: 1, name: 'Name1'},
         {id: 2, name: 'Name3'},
         {id: 3, name: 'Name3'},
-        {id:4 , name: 'Name3'},
+        {id: 4, name: 'Name3'},
         {id: 5, name: 'Name3'}
     ],
 
@@ -36,16 +36,12 @@ export const dialogReducer = (state:StateArgumentType = dialogInitialState, acti
 
     if (action.type === NewDialogMessageText) {
 
-
         return {...state, newDialogMessageText: action.newDialogMessageText}
 
         //Добавления сообщения в компоненете диалог
     } else if (action.type === AddDialogMessageText) {
-
         // let newDialogMessageText = {message: state.newDialogMessageText, likeCount: 10 }
-
         // copyState.messageData.push(newDialogMessageText)
-
         return {...state, newDialogMessageText: '',  messageData: [...state.messageData, {message: state.newDialogMessageText, likeCount: 10 }] }
     }
 

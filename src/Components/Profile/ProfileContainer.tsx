@@ -19,7 +19,7 @@ type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsTy
 export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => {
     // let {userId} =   useParams()
     let {userId} = useParams()
-    console.log(userId)
+
     if (!userId) {
         userId = '24946'
     }
@@ -47,7 +47,6 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
 
         </div>
     )
-
 
 }
 

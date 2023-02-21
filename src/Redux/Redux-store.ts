@@ -3,6 +3,7 @@ import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
 import { UsersReducer} from "./UsersReducer";
+import {authorizedReducer} from "./authorizedReduser";
 
 export type RootStateType = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
@@ -50,11 +51,20 @@ type setUsersProfilePropsType = {
     type: 'setUsersProfile'
     profile:any
 }
+type SetAuthorisedActionCreator = {
+    type:'SET_AUTHORISED'
+    data: {
+        userId: number,
+        email: string,
+        login:string
+    }
+
+}
 
 
  export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText |
      FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount |
-     setIsFetchingPreloadGifPropsType | setUsersProfilePropsType
+     setIsFetchingPreloadGifPropsType | setUsersProfilePropsType | SetAuthorisedActionCreator
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>
@@ -63,7 +73,8 @@ let reducers = combineReducers({
     profileReducer: profileReducer,
     dialogReducer: dialogReducer,
     sidebarReducer: sidebarReducer,
-    usersPage: UsersReducer
+    usersPage: UsersReducer,
+    authorizedReducer: authorizedReducer
 })
 
 export let store = legacy_createStore(reducers) /// переделать

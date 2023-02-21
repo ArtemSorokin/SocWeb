@@ -9,6 +9,7 @@ import {UsersContainer} from "./Components/Users/UsersContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {NotFound} from "./Components/NotFound/NotFound";
 import {FriendsProfile} from "./Components/FriedsProfile/FriendsProfile";
+import {HeaderContainer} from "./Components/Header/HeaderContainer";
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App-Wraper">
-                <Header/>
+                <HeaderContainer/>
                 <NavBar/>
 
                 <div className='App-Wraper-content'>

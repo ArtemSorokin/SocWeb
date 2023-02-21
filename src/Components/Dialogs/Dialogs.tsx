@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 
 type DialogsPropsType ={
-dialogdata: Array<{ id: number, name: string }>
+    dialogdata: Array<{ id: number, name: string }>
     messageData: Array<{ message: string, likeCount?: number }>
     AddDialogMessageText: ()=>void
     ChangeDialogMessageText:(newDialogMessageText: string)=> void
