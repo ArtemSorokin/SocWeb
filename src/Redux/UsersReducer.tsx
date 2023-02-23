@@ -17,6 +17,7 @@ export type UsersInitStateType = {
     totalCount: number
     currentPage: number
     isFetchingPreloadGif: boolean
+    followed: boolean
 }
 
 let UsersInitState:UsersInitStateType = {
@@ -24,7 +25,8 @@ let UsersInitState:UsersInitStateType = {
     pagesize: 5,
     totalCount: 0,
     currentPage: 1,
-    isFetchingPreloadGif: false
+    isFetchingPreloadGif: false,
+    followed: false
 
 }
 
@@ -37,15 +39,16 @@ export const setIsFetchingPreloadGifAC = (isFetchingPreloadGif: boolean)=> ({ ty
 
 
 export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: ActionsTypes): UsersInitStateType => {
-
+debugger
     switch (action.type) {
+
         case FOLLOW:
             return {
 
                 ...state, users: state.users.map(
                     (u)=> {
                         if(u.id === action.userID) {
-                            return{ ...u, followed: true}
+                            return { ...u, followed: false}
                         }
                      return u
                     })
@@ -54,7 +57,7 @@ export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: 
             return {
                 ...state, users: state.users.map( (u)=>{
                     if(u.id === action.userID) {
-                        return {...u, followed: false }
+                        return {...u, followed: true }
                     }
                     return u
                 })
