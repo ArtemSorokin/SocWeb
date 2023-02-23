@@ -56,7 +56,8 @@ type SetAuthorisedActionCreator = {
     data: {
         userId: number,
         email: string,
-        login:string
+        login:string,
+        authorised: boolean
     }
 
 }
@@ -74,7 +75,7 @@ let reducers = combineReducers({
     dialogReducer: dialogReducer,
     sidebarReducer: sidebarReducer,
     usersPage: UsersReducer,
-    authorizedReducer: authorizedReducer
+    authorized: authorizedReducer
 })
 
 export let store = legacy_createStore(reducers) /// переделать
