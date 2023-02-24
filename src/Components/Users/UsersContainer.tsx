@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import {Users} from "./Users";
 import Preloader from '../ResForAllComponrnts/Preloader/Preloader.png'
+import {userApi} from "../../ServerApi/UsersServerApi";
 
 
 export type mapStateToPropsType = {
@@ -35,29 +36,23 @@ export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsTyp
 
 export class UsersClassComponent extends React.Component<UserComponentPropsType> {
 
-
-
     componentDidMount() {
 
         // запрос списка юзеров
         this.props.setIsFetchingPreloadGifAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesize}` ,
-            {withCredentials: true}
-            ).then(response => {
+        userApi.getUsers(this.props.currentPage, this.props.pagesize).then(data => {
             this.props.setIsFetchingPreloadGifAC(false)
-            this.props.SetUsersActionCreator(response.data.items)
-            this.props.settotalCountPageActionCreator(response.data.totalCount)
+            this.props.SetUsersActionCreator(data.items)
+            this.props.settotalCountPageActionCreator(data.totalCount)
         })
     }
 
     setCurrentPage = (currentPage:number)=>{
         this.props.SetCurrentPageActionCreator(currentPage)
         this.props.setIsFetchingPreloadGifAC(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pagesize}` , {
-            withCredentials: true
-        }).then(response => {
+        userApi.getUsers(currentPage, this.props.pagesize).then(data => {
             this.props.setIsFetchingPreloadGifAC(false)
-            this.props.SetUsersActionCreator(response.data.items)
+            this.props.SetUsersActionCreator(data.items)
         })
     }
 

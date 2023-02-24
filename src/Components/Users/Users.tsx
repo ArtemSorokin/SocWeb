@@ -4,6 +4,7 @@ import emptyAvatar from "../../images/userWithotPhoto/Avatar-PNG-Images.png";
 import {UserUnitType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {followApi, unfollowApi} from "../../ServerApi/UsersServerApi";
 
 type usersFcComponrntPropsType = {
     users: Array<UserUnitType>
@@ -34,7 +35,7 @@ export const Users = (props: usersFcComponrntPropsType) => {
         </div>
 
         {props.users.map((u) => {
-debugger
+
             return (<div key={u.id}>
       <span>
           <div>
@@ -48,22 +49,18 @@ debugger
 
                   <button onClick={() => {
 
-                      axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { withCredentials: true,
-                          headers: {'API-KEY': 'd60cb8da-f90e-49ec-b832-2b8ab8205bad'}
-                      } ).then(response => {
+                      unfollowApi.getUnfollow(u.id).then(data => {
 
-                          if(response.data.resultCode === 0 ) {
+                          if(data.resultCode === 0 ) {
                               props.follow(u.id)
 
                           }
                       })
                   }}> Unfollow</button> : <button onClick={() => {
 
-                      axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { },{withCredentials: true,
-                          headers: {'API-KEY': 'd60cb8da-f90e-49ec-b832-2b8ab8205bad'}
-                      }).then(response => {
+                      followApi.getFollow(u.id).then(data => {
                           debugger
-                          if(response.data.resultCode === 0 ) {
+                          if(data.resultCode === 0 ) {
                               props.unFollow(u.id)
 
                           }
