@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
 import {
     FollowUserActionCreator,
-    SetCurrentPageActionCreator, setIsFetchingPreloadGifAC,
+    SetCurrentPageActionCreator, setIsFetchingPreloadGifAC, settoggleFollowingInProgesAC,
     settotalCountPageActionCreator,
     SetUsersActionCreator,
     UnfollowUserActionCreator,
@@ -22,14 +22,16 @@ export type mapStateToPropsType = {
     currentPage: number
     isFetchingPreloadGif: boolean
     followed: boolean
+    followingInProgress: Array<number>
 }
 export type mapDispatchToPropsType = {
     FollowUserActionCreator: (userId: number) => void
-        UnfollowUserActionCreator: (userId: number) => void,
+    UnfollowUserActionCreator: (userId: number) => void,
     SetUsersActionCreator: (usersArray: Array<UserUnitType>) => void
-    SetCurrentPageActionCreator:(pageNumber:number)=> void
-    settotalCountPageActionCreator:(totalCount: number) => void
-    setIsFetchingPreloadGifAC: (isFetchingPreloadGif:boolean)=> void
+    SetCurrentPageActionCreator: (pageNumber: number) => void
+    settotalCountPageActionCreator: (totalCount: number) => void
+    setIsFetchingPreloadGifAC: (isFetchingPreloadGif: boolean) => void
+    settoggleFollowingInProgesAC: (isFetching: boolean, userId: number) => void
 }
 export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -47,7 +49,7 @@ export class UsersClassComponent extends React.Component<UserComponentPropsType>
         })
     }
 
-    setCurrentPage = (currentPage:number)=>{
+    setCurrentPage = (currentPage: number) => {
         this.props.SetCurrentPageActionCreator(currentPage)
         this.props.setIsFetchingPreloadGifAC(true)
         userApi.getUsers(currentPage, this.props.pagesize).then(data => {
@@ -59,20 +61,22 @@ export class UsersClassComponent extends React.Component<UserComponentPropsType>
     render() {
 
         return <>
-             {this.props.isFetchingPreloadGif? <img src={Preloader}/> : null}
+            {this.props.isFetchingPreloadGif ? <img src={Preloader}/> : null}
 
-        <Users
+            <Users
 
-            users={this.props.users}
-            totalCount={this.props.totalCount}
-            currentPage={this.props.currentPage}
-            pagesize={this.props.pagesize}
-            follow={this.props.FollowUserActionCreator}
-            unFollow={this.props.UnfollowUserActionCreator}
-            setCurrentPage={this.setCurrentPage}
-            followed={this.props.followed}
+                users={this.props.users}
+                totalCount={this.props.totalCount}
+                currentPage={this.props.currentPage}
+                pagesize={this.props.pagesize}
+                follow={this.props.FollowUserActionCreator}
+                unFollow={this.props.UnfollowUserActionCreator}
+                setCurrentPage={this.setCurrentPage}
+                followed={this.props.followed}
+                settoggleFollowingInProgesAC={this.props.settoggleFollowingInProgesAC}
+                followingInProgress={this.props.followingInProgress}
 
-        />
+            />
         </>
 
     }
@@ -86,10 +90,10 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
         isFetchingPreloadGif: state.usersPage.isFetchingPreloadGif,
-        followed: state.usersPage.followed
+        followed: state.usersPage.followed,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
-
 
 
 export const UsersContainer = connect(mapStateToProps, {
@@ -98,4 +102,5 @@ export const UsersContainer = connect(mapStateToProps, {
     SetUsersActionCreator,
     SetCurrentPageActionCreator,
     settotalCountPageActionCreator,
-    setIsFetchingPreloadGifAC   })(UsersClassComponent)
+    setIsFetchingPreloadGifAC, settoggleFollowingInProgesAC
+})(UsersClassComponent)

@@ -61,11 +61,17 @@ type SetAuthorisedActionCreator = {
     }
 
 }
+type toggleDisabledButtonACType = {
+    type: "toggleFollowingInProges"
+    isFetching: boolean
+    userId: number
+
+}
 
 
  export type ActionsTypes = AddPostActionType | UpdatePostTextActionType | NewDialogMessageText | AddDialogMessageText |
      FOLLOWActionsType | UNFOLLOWActionsType | SetusersActionType | SetCurrentPageActionType | SetCurrenttotalCount |
-     setIsFetchingPreloadGifPropsType | setUsersProfilePropsType | SetAuthorisedActionCreator
+     setIsFetchingPreloadGifPropsType | setUsersProfilePropsType | SetAuthorisedActionCreator | toggleDisabledButtonACType
 
 type ReducersType =  typeof reducers
 export type AppStateType = ReturnType<ReducersType>
