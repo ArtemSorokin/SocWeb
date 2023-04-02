@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
 import {
-    FollowUserActionCreator,
+    FollowUserActionCreator, getUsers,
     SetCurrentPageActionCreator, setIsFetchingPreloadGifAC, settoggleFollowingInProgesAC,
     settotalCountPageActionCreator,
     SetUsersActionCreator,
@@ -32,6 +32,7 @@ export type mapDispatchToPropsType = {
     settotalCountPageActionCreator: (totalCount: number) => void
     setIsFetchingPreloadGifAC: (isFetchingPreloadGif: boolean) => void
     settoggleFollowingInProgesAC: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage: number,   pagesize: number ) => void
 }
 export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -39,29 +40,17 @@ export type UserComponentPropsType = mapStateToPropsType & mapDispatchToPropsTyp
 export class UsersClassComponent extends React.Component<UserComponentPropsType> {
 
     componentDidMount() {
-
-        // запрос списка юзеров
-        this.props.setIsFetchingPreloadGifAC(true)
-        userApi.getUsers(this.props.currentPage, this.props.pagesize).then(data => {
-            this.props.setIsFetchingPreloadGifAC(false)
-            this.props.SetUsersActionCreator(data.items)
-            this.props.settotalCountPageActionCreator(data.totalCount)
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pagesize)
     }
 
     setCurrentPage = (currentPage: number) => {
-        this.props.SetCurrentPageActionCreator(currentPage)
-        this.props.setIsFetchingPreloadGifAC(true)
-        userApi.getUsers(currentPage, this.props.pagesize).then(data => {
-            this.props.setIsFetchingPreloadGifAC(false)
-            this.props.SetUsersActionCreator(data.items)
-        })
+        this.props.getUsers(currentPage, this.props.pagesize)
     }
 
     render() {
 
         return <>
-            {this.props.isFetchingPreloadGif ? <img src={Preloader}/> : null}
+            {this.props.isFetchingPreloadGif ? <img alt={'Wait until loading'} src={Preloader}/> : null}
 
             <Users
 
@@ -99,8 +88,10 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
 export const UsersContainer = connect(mapStateToProps, {
     FollowUserActionCreator,
     UnfollowUserActionCreator,
-    SetUsersActionCreator,
+    SetUsersActionCreator,//
     SetCurrentPageActionCreator,
-    settotalCountPageActionCreator,
-    setIsFetchingPreloadGifAC, settoggleFollowingInProgesAC
+    settotalCountPageActionCreator,//
+    setIsFetchingPreloadGifAC,//
+    settoggleFollowingInProgesAC, //
+    getUsers
 })(UsersClassComponent)

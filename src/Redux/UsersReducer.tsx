@@ -43,6 +43,45 @@ export const settotalCountPageActionCreator = (totalCount:number) => ({type: set
 export const setIsFetchingPreloadGifAC = (isFetchingPreloadGif: boolean)=> ({ type: setIsFetchingPreloadGif, isFetchingPreloadGif})
 export const settoggleFollowingInProgesAC = (isFetching: boolean, userId: number)=> ({ type: toggleFollowingInProges, isFetching, userId})
 
+//Thunk
+export const getUsers = (currentPage: number, pagesize:number)=> {
+  return  (dispatch:any) =>{
+       dispatch(setIsFetchingPreloadGifAC(true))
+        userApi.getUsers(currentPage, pagesize).then(data => {
+          dispatch( setIsFetchingPreloadGifAC(false))
+           dispatch(SetUsersActionCreator(data.items))
+            dispatch(settotalCountPageActionCreator(data.totalCount))
+            dispatch(SetCurrentPageActionCreator(currentPage))
+        })
+    }
+}
+export const followThunk = (userId:number)=>(dispatch: any)=>{
+    return (dispatch:any)=> {
+        dispatch(settoggleFollowingInProgesAC(true, userId))
+        userApi.unfollowApi(userId).then(response => {
+            if (response.data.resultCode == 0) {
+                debugger
+                dispatch(FollowUserActionCreator((userId)))
+            }
+            dispatch(settoggleFollowingInProgesAC(false, userId))
+        })
+    }
+
+
+}
+export const unFollowThunk = (userId: number)=>(dispatch:any)=>{
+    return (dispatch:any)=>{
+       dispatch(settoggleFollowingInProgesAC(true, userId))
+        userApi.followApi(userId).then(response =>{
+            if(response.data.resultCode == 0) {
+
+                dispatch(UnfollowUserActionCreator(userId))
+            }
+         dispatch(settoggleFollowingInProgesAC(false, userId))
+        })
+    }
+}
+
 
 export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: ActionsTypes): UsersInitStateType => {
 debugger

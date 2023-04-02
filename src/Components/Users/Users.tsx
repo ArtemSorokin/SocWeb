@@ -1,10 +1,9 @@
 import React from 'react';
 import s from "./Users.module.css";
 import emptyAvatar from "../../images/userWithotPhoto/Avatar-PNG-Images.png";
-import {settoggleFollowingInProgesAC, UserUnitType} from "../../Redux/UsersReducer";
+import {followThunk, unFollowThunk, UserUnitType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {followApi, unfollowApi} from "../../ServerApi/UsersServerApi";
+import {userApi} from "../../ServerApi/UsersServerApi";
 
 type usersFcComponrntPropsType = {
     users: Array<UserUnitType>
@@ -53,28 +52,31 @@ export const Users = (props: usersFcComponrntPropsType) => {
 
                       disabled={props.followingInProgress.some((id) => id === u.id)}
                       onClick={() => {
-                          props.settoggleFollowingInProgesAC(true, u.id)
+                          props.follow(u.id)
+                          // unfollowApi.getUnfollow(u.id).then(data => {
+                          //
+                          //     if (data.resultCode === 0) {
+                          //         props.follow(u.id)
+                          //     }
+                          //
+                          //     props.settoggleFollowingInProgesAC(false, u.id)
+                          // })
+                      }}> Unfollow</button> :
 
-                          unfollowApi.getUnfollow(u.id).then(data => {
-
-                              if (data.resultCode === 0) {
-                                  props.follow(u.id)
-                              }
-
-                              props.settoggleFollowingInProgesAC(false, u.id)
-                          })
-                      }}> Unfollow</button> : <button
+                  <button
                       disabled={props.followingInProgress.some((id) => id === u.id)}
                       onClick={() => {
-                          props.settoggleFollowingInProgesAC(true, u.id)
-                          followApi.getFollow(u.id).then(data => {
-                              debugger
-                              if (data.resultCode === 0) {
-                                  props.unFollow(u.id)
-                              }
-                              props.settoggleFollowingInProgesAC(false, u.id)
+                          props.unFollow(u.id)
 
-                          })
+                          // userApi.followApi(u.id)
+                          // followApi.getFollow(u.id).then(data => {
+                          //     debugger
+                          //     if (data.resultCode === 0) {
+                          //         props.unFollow(u.id)
+                          //     }
+                          //     props.settoggleFollowingInProgesAC(false, u.id)
+                          //
+                          // })
 
                       }}> Follow</button>
               }

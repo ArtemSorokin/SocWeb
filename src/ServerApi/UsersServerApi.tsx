@@ -1,4 +1,5 @@
 import axios from "axios";
+import {retry} from "@reduxjs/toolkit/query";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -14,26 +15,20 @@ export const userApi = {
             instance.get(`users?page=${currentPage}&count=${pagesize}`)
                 .then(response => response.data)
         )
-    }
-}
-export const unfollowApi = {
-    getUnfollow (userId:number) {
+    },
+    //
+    unfollowApi  (userId: number) {
         debugger
-        return (
-            instance.delete(`follow/${userId}`
-            ).then(response => response.data)
-        )
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+    },
+    followApi  (userId:number) {
+
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
     }
 }
 
-export const followApi = {
-    getFollow (userId:number) {
-        return (
-            instance.post(`follow/${userId}`
-            ).then(response => response.data)
-        )
-    }
-}
+
+
 
 
 

@@ -25,7 +25,7 @@ function App() {
 
                     <Routes>
                             <Route path="/" element={<Navigate to={'/profile'} />}/>
-                            <Route path="/dialogs" element={<DialogsContainer />}/>
+                            <Route path="/dialogs" element={<DialogsContainer /> }/>
                         <Route path="/profile" element={<ProfileContainer />}/>
                         <Route path="/profile/:userId" element={<ProfileContainer />}/>
                         {/*<Route path="/profile/:userId" element={<FriendsProfile />}/>*/}
@@ -37,6 +37,7 @@ function App() {
 
             </div>
         </BrowserRouter>
+
     );
 }
 

@@ -1,9 +1,10 @@
-import {combineReducers, legacy_createStore} from "@reduxjs/toolkit";
+import {applyMiddleware, combineReducers, legacy_createStore} from "@reduxjs/toolkit";
 import {profileReducer} from "./ProfileReducer";
 import {dialogReducer} from "./DialogReducer";
 import {sidebarReducer} from "./SidebarReducer";
 import { UsersReducer} from "./UsersReducer";
 import {authorizedReducer} from "./authorizedReduser";
+ import thunkMiddleware from 'redux-thunk';
 
 export type RootStateType = ReturnType< typeof store.getState>
 export type AppDispatch =  typeof store.dispatch
@@ -84,7 +85,7 @@ let reducers = combineReducers({
     authorized: authorizedReducer
 })
 
-export let store = legacy_createStore(reducers) /// переделать
+export let store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware)) /// переделать
 
 
 // @ts-ignore
