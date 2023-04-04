@@ -66,7 +66,6 @@ type toggleDisabledButtonACType = {
     type: "toggleFollowingInProges"
     isFetching: boolean
     userId: number
-
 }
 
 

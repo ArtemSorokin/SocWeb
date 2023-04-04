@@ -1,5 +1,6 @@
 import {ActionsTypes} from "./Redux-store";
 import {debug} from "util";
+import {userApi} from "../ServerApi/UsersServerApi";
 
 type StateArgumentType = {
 
@@ -7,7 +8,6 @@ type StateArgumentType = {
         newPostText: string
         profile: any
 }
-
 
 
 const UpdatePostText = 'UpdatePostText'
@@ -28,6 +28,13 @@ let initialState = {
 export const UpdatePostTextActionCreator= (text: string)=> ({type: UpdatePostText, newPostText: text})
 export const AddPostActionCreator = ()=>(  {type: AddPost})
 export const setUsersProfileAC = (profile:any)=> (  {type: setUsersProfile, profile} )
+export const getProfileThunk = (userId:string | undefined)=>(dispath: any)=> {
+    return userApi.getProfile(userId).then(response => {
+
+        dispath(setUsersProfileAC(response.data))
+    })
+
+}
 
 
 export const profileReducer = (state:StateArgumentType = initialState, action: ActionsTypes): StateArgumentType => {

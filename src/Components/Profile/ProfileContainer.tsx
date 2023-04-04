@@ -3,23 +3,23 @@ import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
-import {setUsersProfileAC} from "../../Redux/ProfileReducer";
+import {getProfileThunk, setUsersProfileAC} from "../../Redux/ProfileReducer";
 import {useParams,} from "react-router-dom";
+import {userApi} from "../../ServerApi/UsersServerApi";
+
 
 
 type mapStateToPropsType = {
     profile: any
-
 }
 type mapDispatchToPropsType = {
-    setUsersProfileAC: (profile: any) => void
+    getProfileThunk: (profile: any) => void
 }
 type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => {
-    // let {userId} =   useParams()
-    let {userId} = useParams()
 
+    let {userId} = useParams()
     if (!userId) {
         userId = '24946'
     }
@@ -34,10 +34,12 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
 
     useEffect(() => {
         /// useParams &&&&& props.profile.match.params.userId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+        //
+        //     props.setUsersProfileAC(response.data)
+        // })
 
-            props.setUsersProfileAC(response.data)
-        })
+        props.getProfileThunk(userId)
     }, [userId])
 
     return (
@@ -55,7 +57,7 @@ let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
 })
 
 
-export const ProfileContainer = connect(mapStatetoProps, {setUsersProfileAC})(ProfileClassContainer)
+export const ProfileContainer = connect(mapStatetoProps, {getProfileThunk})(ProfileClassContainer)
 
 
 

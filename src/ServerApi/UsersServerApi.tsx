@@ -1,5 +1,5 @@
 import axios from "axios";
-import {retry} from "@reduxjs/toolkit/query";
+
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -19,12 +19,21 @@ export const userApi = {
     //
     unfollowApi  (userId: number) {
         debugger
-        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
     },
     followApi  (userId:number) {
 
-        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`)
+        return instance.post(`follow/${userId}`)
+    },
+    getProfile(userId: string | undefined) {
+
+        return  instance.get(`profile/${userId}`)
+
+    },
+    getMe() {
+        return instance.get(`auth/me` )
     }
+
 }
 
 

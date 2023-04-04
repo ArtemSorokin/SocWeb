@@ -11,6 +11,7 @@
 
 
 import {ActionsTypes} from "./Redux-store";
+import {userApi} from "../ServerApi/UsersServerApi";
 
 export type initialStateType = {
     data: {
@@ -48,6 +49,18 @@ export const SetAuthorisedActionCreator = (
         authorised: true
     }
 })
+
+export const getMeThunk = ()=>(dispatch: any)=>{
+    userApi.getMe().then(
+        response => {
+            if(response.data.resultCode === 0 ) {
+                let {email, id, login } = response.data.data
+
+               dispatch(SetAuthorisedActionCreator(email, id, login ))
+            }
+        }
+    )
+}
 
 
 export const authorizedReducer = (state = initialState, action: ActionsTypes): initialStateType => {

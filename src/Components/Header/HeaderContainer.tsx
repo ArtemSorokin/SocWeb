@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {authorizedReducer, SetAuthorisedActionCreator} from "../../Redux/authorizedReduser";
-import axios from "axios";
+import {getMeThunk} from "../../Redux/authorizedReduser";
 import {RootStateType} from "../../Redux/Redux-store";
-
 
 type mapStatetoPropsType = {
     authorized: boolean
@@ -12,10 +10,7 @@ type mapStatetoPropsType = {
 }
 
 type mapDispachToPropsType = {
-    SetAuthorisedActionCreator: (
-        email: string,
-        id:number,
-        login: string )=> void,
+    getMeThunk: ()=> void,
 }
 
 type HeaderContainerType = mapStatetoPropsType & mapDispachToPropsType
@@ -23,26 +18,10 @@ type HeaderContainerType = mapStatetoPropsType & mapDispachToPropsType
 
 const HeaderContainer = (props:HeaderContainerType)=> {
 
-    // componentDidMount() {
-    //     axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me` , {withCredentials: true}).then(response => {
-    //
-    //         if(response.data.result === 0 ) {
-    //
-    //             let {id, login, email} = response.data.data
-    //             SetAuthorisedActionCreator(id, login, email)
-    //         }
-    //     })
-    // }
-
     useEffect( ()=> {
-                axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me` , {withCredentials: true}).then(response => {
 
-                    if(response.data.resultCode === 0 ) {
-                        let {email, id, login } = response.data.data
+        props.getMeThunk()
 
-                        props.SetAuthorisedActionCreator(email, id, login )
-                    }
-        })
 
     },[])
 
@@ -55,4 +34,5 @@ let mapStatetoProps = (state: RootStateType): mapStatetoPropsType=>({
     login: state.authorized.data.login
 })
 
-export default  connect(mapStatetoProps,{SetAuthorisedActionCreator} )(HeaderContainer)
+
+export default  connect(mapStatetoProps,{getMeThunk} )(HeaderContainer)

@@ -9,10 +9,9 @@ import {
     UnfollowUserActionCreator,
     UserUnitType
 } from "../../Redux/UsersReducer";
-import axios from "axios";
 import {Users} from "./Users";
 import Preloader from '../ResForAllComponrnts/Preloader/Preloader.png'
-import {userApi} from "../../ServerApi/UsersServerApi";
+
 
 
 export type mapStateToPropsType = {

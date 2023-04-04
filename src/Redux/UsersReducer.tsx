@@ -56,16 +56,16 @@ export const getUsers = (currentPage: number, pagesize:number)=> {
     }
 }
 export const followThunk = (userId:number)=>(dispatch: any)=>{
-    return (dispatch:any)=> {
+    // return (dispatch:any)=> {
         dispatch(settoggleFollowingInProgesAC(true, userId))
         userApi.unfollowApi(userId).then(response => {
             if (response.data.resultCode == 0) {
-                debugger
+
                 dispatch(FollowUserActionCreator((userId)))
             }
             dispatch(settoggleFollowingInProgesAC(false, userId))
         })
-    }
+    // }
 
 
 }
