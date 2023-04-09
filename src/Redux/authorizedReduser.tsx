@@ -1,15 +1,3 @@
-// import {ActionsTypes} from "./Redux-store";
-// type SetAuthorisedActionCreatorType = {
-//     type:'SET_AUTHORISED'
-//     data: {
-//         userId: number,
-//         email: string,
-//         login:string
-//     }
-//
-// }
-
-
 import {ActionsTypes} from "./Redux-store";
 import {userApi} from "../ServerApi/UsersServerApi";
 
@@ -64,12 +52,10 @@ export const getMeThunk = ()=>(dispatch: any)=>{
 
 
 export const authorizedReducer = (state = initialState, action: ActionsTypes): initialStateType => {
-
+debugger
     if(action.type === SET_AUTHORISED) {
-        return {
-            ...state,
-        ...action    /// 61
-        }
+        debugger
+        return  {...state, ...action   }
     } else return state
 
      }

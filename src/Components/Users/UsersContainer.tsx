@@ -48,7 +48,7 @@ export class UsersClassComponent extends React.Component<UserComponentPropsType>
 
     render() {
 
-        return <>
+        return <div>
             {this.props.isFetchingPreloadGif ? <img alt={'Wait until loading'} src={Preloader}/> : null}
 
             <Users
@@ -65,7 +65,7 @@ export class UsersClassComponent extends React.Component<UserComponentPropsType>
                 followingInProgress={this.props.followingInProgress}
 
             />
-        </>
+        </div>
 
     }
 

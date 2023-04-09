@@ -8,6 +8,7 @@ import {UsersContainer} from "./Components/Users/UsersContainer";
 import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 import {NotFound} from "./Components/NotFound/NotFound";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import {Login} from "./Components/Login/Login";
 
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
                         <Route path="/profile/:userId" element={<ProfileContainer />}/>
                         {/*<Route path="/profile/:userId" element={<FriendsProfile />}/>*/}
                         <Route path ="/users" element={<UsersContainer/>}/>
-                        <Route path='*' element={NotFound}/>
+                        <Route path ="/login" element={<Login/>}/>
+                        <Route path='/*' element={<NotFound/>}/>
                     </Routes>
 
                 </div>

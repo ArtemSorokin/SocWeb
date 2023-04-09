@@ -7,6 +7,7 @@ type StateArgumentType = {
         postData: Array<{ message: string, likes: number }>,
         newPostText: string
         profile: any
+
 }
 
 
@@ -22,7 +23,8 @@ let initialState = {
         {message:'Kak tipizirovat', likes: 5 }
     ],
         newPostText:'it-kamasutra',
-         profile: null
+         profile: null,
+
 }
 
 export const UpdatePostTextActionCreator= (text: string)=> ({type: UpdatePostText, newPostText: text})

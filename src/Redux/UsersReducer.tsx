@@ -84,7 +84,6 @@ export const unFollowThunk = (userId: number)=>(dispatch:any)=>{
 
 
 export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: ActionsTypes): UsersInitStateType => {
-debugger
     switch (action.type) {
 
         case FOLLOW:

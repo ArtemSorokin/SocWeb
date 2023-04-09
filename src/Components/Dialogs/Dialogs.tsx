@@ -1,7 +1,11 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
+import {useNavigate} from "react-router-dom";
+// @ts-ignore
+
+
 
 type DialogsPropsType ={
     dialogdata: Array<{ id: number, name: string }>
@@ -9,10 +13,13 @@ type DialogsPropsType ={
     AddDialogMessageText: ()=>void
     ChangeDialogMessageText:(newDialogMessageText: string)=> void
     newDialogMessageText: string
+    auth: boolean
 
 }
 
 export const Dialogs = (props: DialogsPropsType ) => {
+
+    const redirect = useNavigate()
 
 
 // map
@@ -30,6 +37,10 @@ export const Dialogs = (props: DialogsPropsType ) => {
         props.ChangeDialogMessageText(newDialogMessageText)
 
     }
+// переделать
+    useEffect(()=>{
+        if(!props.auth) {  redirect('/login')}
+    }, [props.auth])
 
     return (
         <div className={s.dialogs}>

@@ -21,7 +21,8 @@ let mapStateToProps = (state:RootStateType)=> {
     return {
         dialogdata: state.dialogReducer.dialogData,
         newDialogMessageText: state.dialogReducer.newDialogMessageText,
-        messageData: state.dialogReducer.messageData
+        messageData: state.dialogReducer.messageData,
+        auth: state.authorized.data.authorised
     }
 }
 
