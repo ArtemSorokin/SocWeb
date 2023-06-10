@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
 import {
+    followThunk,
     FollowUserActionCreator, getUsers,
     SetCurrentPageActionCreator, setIsFetchingPreloadGifAC, settoggleFollowingInProgesAC,
     settotalCountPageActionCreator,
-    SetUsersActionCreator,
+    SetUsersActionCreator, unFollowThunk,
     UnfollowUserActionCreator,
     UserUnitType
 } from "../../Redux/UsersReducer";
@@ -24,8 +25,8 @@ export type mapStateToPropsType = {
     followingInProgress: Array<number>
 }
 export type mapDispatchToPropsType = {
-    FollowUserActionCreator: (userId: number) => void
-    UnfollowUserActionCreator: (userId: number) => void,
+    followThunk: (userId: number) => void
+    unFollowThunk: (userId: number) => void,
     SetUsersActionCreator: (usersArray: Array<UserUnitType>) => void
     SetCurrentPageActionCreator: (pageNumber: number) => void
     settotalCountPageActionCreator: (totalCount: number) => void
@@ -57,11 +58,11 @@ export class UsersClassComponent extends React.Component<UserComponentPropsType>
                 totalCount={this.props.totalCount}
                 currentPage={this.props.currentPage}
                 pagesize={this.props.pagesize}
-                follow={this.props.FollowUserActionCreator}
-                unFollow={this.props.UnfollowUserActionCreator}
+                follow={this.props.followThunk}
+                unFollow={this.props.unFollowThunk}
                 setCurrentPage={this.setCurrentPage}
                 followed={this.props.followed}
-                settoggleFollowingInProgesAC={this.props.settoggleFollowingInProgesAC}
+                // settoggleFollowingInProgesAC={this.props.settoggleFollowingInProgesAC}
                 followingInProgress={this.props.followingInProgress}
 
             />
@@ -85,8 +86,10 @@ const mapStateToProps = (state: RootStateType): mapStateToPropsType => {
 
 
 export const UsersContainer = connect(mapStateToProps, {
-    FollowUserActionCreator,
-    UnfollowUserActionCreator,
+    // FollowUserActionCreator,
+    // UnfollowUserActionCreator,
+    followThunk,
+    unFollowThunk,
     SetUsersActionCreator,//
     SetCurrentPageActionCreator,
     settotalCountPageActionCreator,//

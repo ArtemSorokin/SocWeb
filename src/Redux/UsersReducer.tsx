@@ -55,8 +55,9 @@ export const getUsers = (currentPage: number, pagesize:number)=> {
         })
     }
 }
-export const followThunk = (userId:number)=>(dispatch: any)=>{
-    // return (dispatch:any)=> {
+export const followThunk = (userId:number)=>{
+
+     return (dispatch:any)=> {
         dispatch(settoggleFollowingInProgesAC(true, userId))
         userApi.unfollowApi(userId).then(response => {
             if (response.data.resultCode == 0) {
@@ -65,11 +66,14 @@ export const followThunk = (userId:number)=>(dispatch: any)=>{
             }
             dispatch(settoggleFollowingInProgesAC(false, userId))
         })
-    // }
+     }
 
 
 }
-export const unFollowThunk = (userId: number)=>(dispatch:any)=>{
+
+///
+export const unFollowThunk = (userId: number)=>{
+
     return (dispatch:any)=>{
        dispatch(settoggleFollowingInProgesAC(true, userId))
         userApi.followApi(userId).then(response =>{
@@ -84,6 +88,7 @@ export const unFollowThunk = (userId: number)=>(dispatch:any)=>{
 
 
 export const UsersReducer = (state:UsersInitStateType = UsersInitState, action: ActionsTypes): UsersInitStateType => {
+    debugger
     switch (action.type) {
 
         case FOLLOW:

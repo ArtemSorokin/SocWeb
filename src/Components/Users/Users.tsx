@@ -14,7 +14,7 @@ type usersFcComponrntPropsType = {
     unFollow: (userId: number) => void,
     setCurrentPage: (pageNumber: number) => void
     followed: boolean
-    settoggleFollowingInProgesAC: (isFetching: boolean, userId: number) => void
+    // settoggleFollowingInProgesAC: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 
