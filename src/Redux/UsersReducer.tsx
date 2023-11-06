@@ -32,7 +32,6 @@ let UsersInitState:UsersInitStateType = {
     followed: false,
     followingInProgress: [],
     isFetching: false
-
 }
 
 export const FollowUserActionCreator = (userID: number)=>  ({type: FOLLOW, userID} as const )
@@ -67,8 +66,6 @@ export const followThunk = (userId:number)=>{
             dispatch(settoggleFollowingInProgesAC(false, userId))
         })
      }
-
-
 }
 
 ///

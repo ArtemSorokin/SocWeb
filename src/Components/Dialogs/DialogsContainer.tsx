@@ -5,6 +5,8 @@ import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
 import { RootStateType} from "../../Redux/Redux-store";
+import {useNavigate} from "react-router-dom";
+import {ProfileClassContainer} from "../Profile/ProfileContainer";
 
 // type DialogsContainerPropsType = {
 //     dialogPage: {
@@ -15,7 +17,13 @@ import { RootStateType} from "../../Redux/Redux-store";
 //     dispatch: (action: any) => void
 // }
 
-
+let AuthRedirectComponent = (props: any) => {
+    let redirect = useNavigate()
+    if(!props.auth){
+        redirect('/login')
+    }
+    return <Dialogs {...props}/>
+}
 
 let mapStateToProps = (state:RootStateType)=> {
     return {
@@ -34,4 +42,4 @@ let mapDispatchToProps = (dispatch: any)=> {      // type
 
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)

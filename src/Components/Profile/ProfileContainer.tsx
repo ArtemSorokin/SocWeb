@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {RootStateType} from "../../Redux/Redux-store";
 import {getProfileThunk} from "../../Redux/ProfileReducer";
 import {useNavigate, useParams,} from "react-router-dom";
+import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
 
 
 type mapStateToPropsType = {
@@ -18,7 +19,6 @@ type ProfileClassContainerPropsType = mapStateToPropsType & mapDispatchToPropsTy
 export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => {
 
 
-    let redirect = useNavigate()
 
     let {userId} = useParams()
     if (!userId) {
@@ -43,9 +43,7 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
         props.getProfileThunk(userId)
     }, [userId])
 
-    if(!props.auth){
-       redirect('/login')
-    }
+
 
     return (
 
@@ -57,13 +55,22 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
 
 }
 
+let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
+//     (props: any) => {
+//     let redirect = useNavigate()
+//     if(!props.auth){
+//         redirect('/login')
+//     }
+//     return <ProfileClassContainer {...props}/>
+// }
+
 let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
     profile: state.profileReducer.profile,
     auth: state.authorized.data.authorised
 })
 
 
-export const ProfileContainer = connect(mapStatetoProps, {getProfileThunk})(ProfileClassContainer)
+export const ProfileContainer = connect(mapStatetoProps, {getProfileThunk})(AuthRedirectComponent)
 
 
 

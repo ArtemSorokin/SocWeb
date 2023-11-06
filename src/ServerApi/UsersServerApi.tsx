@@ -18,7 +18,7 @@ export const userApi = {
     },
     //
     unfollowApi  (userId: number) {
-        debugger
+
         return instance.delete(`follow/${userId}`)
     },
     followApi  (userId:number) {
