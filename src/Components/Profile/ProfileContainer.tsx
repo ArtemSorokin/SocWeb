@@ -6,10 +6,10 @@ import {getProfileThunk} from "../../Redux/ProfileReducer";
 import {useNavigate, useParams,} from "react-router-dom";
 import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
 
-
+// не обязательный пропс чтобы передать значения в Хок/ Заменить хок
 type mapStateToPropsType = {
-    profile: any
-    auth: boolean
+    profile?: any
+    auth?: boolean
 }
 type mapDispatchToPropsType = {
     getProfileThunk: (profile: any) => void
@@ -56,6 +56,18 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
 }
 
 let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
+
+
+// let mapStatetoPropsForAuthRedirect = (state: RootStateType): mapStateToPropsType => ({
+//     // profile: state.profileReducer.profile,
+//     auth: state.authorized.data.authorised
+// })
+
+
+
+// AuthRedirectComponent = connect(mapStatetoPropsForAuthRedirect)(AuthRedirectComponent)
+
+
 //     (props: any) => {
 //     let redirect = useNavigate()
 //     if(!props.auth){
@@ -65,8 +77,8 @@ let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
 // }
 
 let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
-    profile: state.profileReducer.profile,
-    auth: state.authorized.data.authorised
+    profile: state.profileReducer.profile
+    // auth: state.authorized.data.authorised
 })
 
 
