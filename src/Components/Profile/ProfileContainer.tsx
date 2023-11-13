@@ -5,6 +5,7 @@ import {RootStateType} from "../../Redux/Redux-store";
 import {getProfileThunk} from "../../Redux/ProfileReducer";
 import {useNavigate, useParams,} from "react-router-dom";
 import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
+import {compose} from "@reduxjs/toolkit";
 
 // не обязательный пропс чтобы передать значения в Хок/ Заменить хок
 type mapStateToPropsType = {
@@ -54,20 +55,20 @@ export const ProfileClassContainer = (props: ProfileClassContainerPropsType) => 
     )
 
 }
-
-let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
-
-
+let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
+    profile: state.profileReducer.profile
+    // auth: state.authorized.data.authorised
+})
+// let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
+// compose(
+//     connect(mapStatetoProps, {getProfileThunk}),
+//     withAuthRedirect
+// )(ProfileClassContainer)
 // let mapStatetoPropsForAuthRedirect = (state: RootStateType): mapStateToPropsType => ({
 //     // profile: state.profileReducer.profile,
 //     auth: state.authorized.data.authorised
 // })
-
-
-
 // AuthRedirectComponent = connect(mapStatetoPropsForAuthRedirect)(AuthRedirectComponent)
-
-
 //     (props: any) => {
 //     let redirect = useNavigate()
 //     if(!props.auth){
@@ -76,13 +77,14 @@ let AuthRedirectComponent = withAuthRedirect(ProfileClassContainer)
 //     return <ProfileClassContainer {...props}/>
 // }
 
-let mapStatetoProps = (state: RootStateType): mapStateToPropsType => ({
-    profile: state.profileReducer.profile
-    // auth: state.authorized.data.authorised
-})
 
 
-export const ProfileContainer = connect(mapStatetoProps, {getProfileThunk})(AuthRedirectComponent)
+export const ProfileContainer = compose(
+    connect(mapStatetoProps, {getProfileThunk}),
+    withAuthRedirect
+)(ProfileClassContainer)
+
+    // connect(mapStatetoProps, {getProfileThunk})(AuthRedirectComponent)
 
 
 
